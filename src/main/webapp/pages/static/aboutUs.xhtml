@@ -6,33 +6,86 @@
     <title>About Us</title>
     <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
+
 <h:body>
     <h:outputScript library="js" name="script.js"/>
 
-    <h1>About Us</h1>
+    <div class="topbar">
+        <a href="http://localhost:8080/CS5003Coursework2MountainsWebApplicationProject-1.0-SNAPSHOT/pages/dynamic/homePage.xhtml" class="logo-container">
 
-    <p>
-        We are a mountain adventure company that offers guided mountain trips
-        to individuals and groups. Our aim is to provide safe, enjoyable,
-        and memorable hiking experiences for all skill levels.
-    </p>
+            <h:graphicImage library="images" name="Mountain website logo 2.png" styleClass="logo"/>
+            <span class="logo-text">Mountains</span>
 
-    <h2>What We Offer</h2>
+        </a>
 
-    <ul>
-        <li>Guided mountain trips</li>
-        <li>Activity planning and booking</li>
-        <li>Hut resevations</li>
-        <li>Weather updates for safe travel</li>
-        <li>Personal trip management and bookmarks</li>
-    </ul>
 
-    <h2>Our Mission</h2>
+    </div>
 
-    <p>
-        Our mission is to make mountain exploration accessible, safe,
-        and well-organised, helping people experience nature with confidence.
-    </p>
+    <div class="layout">
+
+        <div class="sidebar">
+            <h2>Menu</h2>
+            <a href="http://localhost:8080/CS5003Coursework2MountainsWebApplicationProject-1.0-SNAPSHOT/pages/dynamic/homePage.xhtml">Home</a>
+            <a href="#" class="active">About Us</a>
+            <a href="http://localhost:8080/CS5003Coursework2MountainsWebApplicationProject-1.0-SNAPSHOT/pages/static/safetyGuide.xhtml">Safety Guide</a>
+        </div>
+
+        <div class="content">
+
+            <h1>About Us</h1>
+
+            <p>
+                We are a mountain adventure company that offers guided mountain trips
+                to individuals and groups. Our aim is to provide safe, enjoyable,
+                and memorable hiking experiences for all skill levels.
+            </p>
+
+            <h2>What We Offer</h2>
+
+            <ul>
+                <li>Guided mountain trips</li>
+                <li>Activity planning and booking</li>
+                <li>Hut resevations</li>
+                <li>Weather updates for safe travel</li>
+                <li>Personal trip management and bookmarks</li>
+            </ul>
+
+            <h2>Our Mission</h2>
+
+            <p>
+                Our mission is to make mountain exploration accessible, safe,
+                and well-organised, helping people experience nature with confidence.
+            </p>
+
+
+            <h2>Contact Us</h2>
+
+            <p>
+                If you have any questions or need assistance, feel free to contact our team:
+            </p>
+
+            <ul>
+                <li class="contact-item">
+                    <strong>Alesha Sangar</strong>
+                    <p>Email: <a href="mailto:als1657@my.londonmet.ac.uk">als1657@my.londonmet.ac.uk</a></p>
+                </li>
+
+                <li class="contact-item">
+                    <strong>Helga Peter</strong>
+                    <p>Email: <a href="mailto:hep0323@my.londonmet.ac.uk">hep0323@my.londonmet.ac.uk</a></p>
+                </li>
+
+                <li class="contact-item">
+                    <strong>Emmanuel Megwara</strong>
+                    <p>Email: <a href="mailto:chm1406@my.londonmet.ac.uk">chm1406@my.londonmet.ac.uk</a></p>
+                </li>
+
+            </ul>
+
+
+        </div>
+    </div>
+
 
 </h:body>
 </html>
