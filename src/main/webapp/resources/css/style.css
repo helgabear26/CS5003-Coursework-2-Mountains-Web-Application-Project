@@ -1,0 +1,23 @@
+body {
+    background-color: #A7C7E7;
+    color: midnightblue;
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+.sidebar {
+    background-color: #274c77;
+    color: white;
+    padding: 20px;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+.sidebar a:hover {
+    text-decoration: underline;
+}
