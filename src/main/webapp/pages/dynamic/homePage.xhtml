@@ -5,19 +5,44 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
     <meta charset="UTF-8"/>
-    <title>Simple Facelet Page</title>
+    <title> mountain home Page</title>
+    <link rel="stylesheet" type="text/css" href = "../css/homepage.css"/>
 </h:head>
 <h:body>
 
-<ui:fragment>
+    <div class = "top-navbar">
+        <div class = "logo">
+            <a href="#">menu</a>
+        </div>
+    </div>
 
-</ui:fragment>
+    <ul class = "nav-links">
+        <li><a href="../static/aboutUs.xhtml">AboutUs</a> </li>
+        <li><a href="../static/safetyGuide.xhtml">Safety Guide</a> </li>
 
-<h:form>
-    <h:outputLabel for="name" value=""/>
-    <h:inputText id="name" value=""/>
-    <h:commandButton value="Submit"/>
-</h:form>
+
+        <li class="dropdown">
+            <a href="#"> More &#9662;</a>
+            <ul class = "dropdown-menu">
+                <li><a href="activitiesBooking.xhtml">Activities</a></li>
+                <li><a href="mountains.xhtml">Mountains</a></li>
+                <li><a href = "weather.xhtml">Weather</a></li>
+                <li><a href="bookmarks.xhtml">bookmarks</a> </li>
+            </ul>
+        </li>
+
+    </ul>
+
+    <div class="center-content">
+        <hi> welcome to our Website</hi>
+        <p>Your journey start here </p>
+    </div>
+
+    <h:form>
+        <h:outputLabel for="name" value=""/>
+        <h:inputText id="name" value=""/>
+        <h:commandButton value="Submit"/>
+    </h:form>
 
 </h:body>
 </html>
