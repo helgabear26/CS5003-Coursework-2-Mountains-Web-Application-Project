@@ -7,18 +7,18 @@
     <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
 
-<h:body>
+<h:body style="background: url('#{resource['images:Mountain2.jpg']}') center center / cover no-repeat;
+               color: midnightblue;
+               font-family: Arial, sans-serif;
+               margin: 0;">
+
     <h:outputScript library="js" name="script.js"/>
 
     <div class="topbar">
         <a href="http://localhost:8080/CS5003Coursework2MountainsWebApplicationProject-1.0-SNAPSHOT/pages/dynamic/homePage.xhtml" class="logo-container">
-
             <h:graphicImage library="images" name="Mountain website logo 2.png" styleClass="logo"/>
             <span class="logo-text">Mountains</span>
-
         </a>
-
-
     </div>
 
     <div class="layout">
@@ -32,60 +32,60 @@
 
         <div class="content">
 
-            <h1>About Us</h1>
+            <div class="content-box">
+                <h1>About Us</h1>
+                <p>
+                    We are a mountain adventure company that offers guided mountain trips
+                    to individuals and groups. Our aim is to provide safe, enjoyable,
+                    and memorable hiking experiences for all skill levels.
+                </p>
+            </div>
 
-            <p>
-                We are a mountain adventure company that offers guided mountain trips
-                to individuals and groups. Our aim is to provide safe, enjoyable,
-                and memorable hiking experiences for all skill levels.
-            </p>
+            <div class="content-box">
+                <h2>What We Offer</h2>
+                <ul>
+                    <li>Guided mountain trips</li>
+                    <li>Activity planning and booking</li>
+                    <li>Hut resevations</li>
+                    <li>Weather updates for safe travel</li>
+                    <li>Personal trip management and bookmarks</li>
+                </ul>
+            </div>
 
-            <h2>What We Offer</h2>
+            <div class="content-box">
+                <h2>Our Mission</h2>
+                <p>
+                    Our mission is to make mountain exploration accessible, safe,
+                    and well-organised, helping people experience nature with confidence.
+                </p>
+            </div>
 
-            <ul>
-                <li>Guided mountain trips</li>
-                <li>Activity planning and booking</li>
-                <li>Hut resevations</li>
-                <li>Weather updates for safe travel</li>
-                <li>Personal trip management and bookmarks</li>
-            </ul>
+            <div class="content-box">
+                <h2>Contact Us</h2>
+                <p>
+                    If you have any questions or need assistance, feel free to contact our team:
+                </p>
 
-            <h2>Our Mission</h2>
+                <ul>
+                    <li class="contact-item">
+                        <strong>Alesha Sangar</strong>
+                        <p>Email: <a href="mailto:als1657@my.londonmet.ac.uk">als1657@my.londonmet.ac.uk</a></p>
+                    </li>
 
-            <p>
-                Our mission is to make mountain exploration accessible, safe,
-                and well-organised, helping people experience nature with confidence.
-            </p>
+                    <li class="contact-item">
+                        <strong>Helga Peter</strong>
+                        <p>Email: <a href="mailto:hep0323@my.londonmet.ac.uk">hep0323@my.londonmet.ac.uk</a></p>
+                    </li>
 
-
-            <h2>Contact Us</h2>
-
-            <p>
-                If you have any questions or need assistance, feel free to contact our team:
-            </p>
-
-            <ul>
-                <li class="contact-item">
-                    <strong>Alesha Sangar</strong>
-                    <p>Email: <a href="mailto:als1657@my.londonmet.ac.uk">als1657@my.londonmet.ac.uk</a></p>
-                </li>
-
-                <li class="contact-item">
-                    <strong>Helga Peter</strong>
-                    <p>Email: <a href="mailto:hep0323@my.londonmet.ac.uk">hep0323@my.londonmet.ac.uk</a></p>
-                </li>
-
-                <li class="contact-item">
-                    <strong>Emmanuel Megwara</strong>
-                    <p>Email: <a href="mailto:chm1406@my.londonmet.ac.uk">chm1406@my.londonmet.ac.uk</a></p>
-                </li>
-
-            </ul>
-
+                    <li class="contact-item">
+                        <strong>Emmanuel Megwara</strong>
+                        <p>Email: <a href="mailto:chm1406@my.londonmet.ac.uk">chm1406@my.londonmet.ac.uk</a></p>
+                    </li>
+                </ul>
+            </div>
 
         </div>
     </div>
-
 
 </h:body>
 </html>

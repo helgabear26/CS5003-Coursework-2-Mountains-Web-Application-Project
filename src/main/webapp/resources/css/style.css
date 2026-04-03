@@ -1,8 +1,20 @@
 body {
-    background-color: #A7C7E7;
     color: midnightblue;
     font-family: Arial, sans-serif;
     margin: 0;
+}
+
+
+.content {
+    background: transparent;
+}
+
+.content-box {
+    background-color: rgba(167, 199, 231, 0.9);
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 .sidebar {
@@ -136,4 +148,7 @@ body {
     margin: 0;
     margin-left: 15px;    /* slight indent for email */
 }
+
+
+
 
