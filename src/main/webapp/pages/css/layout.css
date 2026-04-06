@@ -1,0 +1,158 @@
+body {
+    color: midnightblue;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-image: url("../background images/Mountain2.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+
+.content {
+    background: transparent;
+}
+
+.content-box {
+    background-color: rgba(167, 199, 231, 0.9);
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #274c77;
+    color: white;
+    padding: 20px;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 10px;
+    padding: 8px;
+    border-radius: 5px;
+    transition: background 0.2s;
+}
+
+.sidebar a:hover {
+    background-color: #3a5f8a;
+}
+
+.layout {
+    display: flex;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.topbar {
+    background-color: #1f3b5c;
+    color: white;
+    padding: 15px 20px;
+    border-bottom: 4px solid #0a0d36;
+}
+
+.topbar h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 15px;
+}
+
+.logo {
+    height: 80px;   /* adjust size */
+    margin-right: 10px;
+    display: block;
+}
+
+.logo-text {
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.sidebar a.active {
+    background-color: #1f3b5c;
+    font-weight: bold;
+    pointer-events: none;   /* disables clicking */
+    cursor: default;
+}
+
+
+.content ul li {
+    margin-bottom: 15px;
+}
+
+.content a {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.content a:hover {
+    color: #dbeafe;
+}
+
+
+/* Headings spacing */
+.content h1 {
+    margin-bottom: 20px;
+}
+
+.content h2 {
+    margin-top: 40px;
+    margin-bottom: 15px;
+}
+
+/* Paragraph spacing */
+.content p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+/* List spacing */
+.content ul {
+    margin-bottom: 25px;
+    padding-left: 20px;
+}
+
+.content ul li {
+    margin-bottom: 10px;
+}
+
+/* Contact section spacing */
+.content ul li strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+
+.contact-item {
+    margin-bottom: 20px;
+}
+
+.contact-item strong {
+    display: block;
+    margin-bottom: 8px;   /* space between name and email */
+}
+
+.contact-item p {
+    margin: 0;
+    margin-left: 15px;    /* slight indent for email */
+}
+
+
+
+

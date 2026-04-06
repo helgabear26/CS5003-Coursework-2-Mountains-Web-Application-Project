@@ -1,22 +1,37 @@
 <!DOCTYPE html>
-<html xmlns="http://xmlns.jcp.org/jsf/html"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns="http://www.w3.org/1999/xhtml">
+<html
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
-    <title>Simple Facelet Page</title>
+    <title>mountains Page</title>
+    <link rel="stylesheet" type="text/css" href="../css/layout.css"/>
 </head>
 <body>
-<ui:fragment>
+<div class="topbar">
+    <a href="http://localhost:8080/CS5003Coursework2MountainsWebApplicationProject-1.0-SNAPSHOT/pages/dynamic/homePage.xhtml" class="logo-container">
+        <h:graphicImage library= "images" name = "Mountain website logo 2.png" styleClass = "logo"/>.
+        <span class="logo-text">Mountains</span>
+    </a>
+</div>
+<div class="layout">
+    <div class="sidebar">
+        <h2>MENU</h2>
+        <a href ="../static/aboutUs.xhtml">AboutUs</a>
+        <a href ="../static/safetyGuide.xhtml">Safety Guide</a>
 
-</ui:fragment>
+    </div>
+    <div class="content">
+        <div class="content-box">
+            <h1>Mountain informations</h1>
 
-<h:form>
-    <h:outputLabel for="name" value=""/>
-    <h:inputText id="name" value=""/>
-    <h:commandButton value="Submit" action=""/>
-</h:form>
+        </div>
+    </div>
+</div>
+
+
+
 
 <ui:fragment>
 

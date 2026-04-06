@@ -1,22 +1,43 @@
 <!DOCTYPE html>
-<html xmlns="http://xmlns.jcp.org/jsf/html"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns="http://www.w3.org/1999/xhtml">
+<html
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
-    <title>Simple Facelet Page</title>
+    <title> login Page</title>
+    <link rel="stylesheet" type ="text/css" href="../css/login.css"/>
+    <script type="text/javascript" src = "../js/script.js"></script>
+
 </head>
 <body>
-<ui:fragment>
+<div class ="content">
+    <div class ="login-box">
+        <h1>Have an account</h1>
+        <div class="header-text">login into your account </div>
 
-</ui:fragment>
+        <form action="homePage.xhtml" method="post">
+            <div class="input-box">
+                <input type="text" name="Email" placeholder="Email"/>
+            </div>
 
-<h:form>
-    <h:outputLabel for="name" value=""/>
-    <h:inputText id="name" value=""/>
-    <h:commandButton value="Submit" action=""/>
-</h:form>
+
+            <div class="input-box">
+                <input type="password" name="password" placeholder="Password"/>
+                <span content="hide-password" onclick="hidepassword()"></span>
+            </div>
+            <input type="submit" value="login" class="button"/>
+            <h3>do have an account click the sign up</h3>
+            <a href="">sign up</a>
+        </form>
+    </div>
+
+
+
+</div>
+
+
+
 
 <ui:fragment>
 
