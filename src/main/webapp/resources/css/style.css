@@ -151,4 +151,38 @@ body {
 
 
 
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
 
+.login-img {
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    object-fit: contain;
+}
+
+
+.login-icon {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    text-decoration: none;
+}
+
+.login-icon img {
+    max-width: 42px;
+    max-height: 42px;
+}
+
+
+.login-text {
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 1px
+}
