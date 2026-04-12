@@ -7,16 +7,22 @@
     <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
 
-<h:body>
+<h:body style="background: url('#{resource['images:Mountain2.jpg']}') center center / cover no-repeat;
+               color: midnightblue;
+               font-family: Arial, sans-serif;
+               margin: 0;">
+
     <h:outputScript library="js" name="script.js"/>
 
     <!-- TOP BAR -->
     <div class="topbar">
         <a href="http://localhost:8080/CS5003Coursework2MountainsWebApplicationProject-1.0-SNAPSHOT/pages/dynamic/homePage.xhtml" class="logo-container">
-
             <h:graphicImage library="images" name="Mountain website logo 2.png" styleClass="logo"/>
             <span class="logo-text">Mountains</span>
-
+        </a>
+        <a href="http://localhost:8080/CS5003Coursework2MountainsWebApplicationProject-1.0-SNAPSHOT/pages/dynamic/login.xhtml" class="login-icon">
+            <h:graphicImage library="images" name="Login.png" styleClass="login-img"/>
+            <span class="login-text">Log in</span>
         </a>
     </div>
 
@@ -34,56 +40,67 @@
         <!-- CONTENT -->
         <div class="content">
 
-            <h1>Safety Guide</h1>
+            <div class="content-box">
+                <h1>Safety Guide</h1>
+                <p>
+                    Your safety is our top priority. Before taking part in any mountain trip or activity,
+                    it is important to understand the risks involved and prepare accordingly.
+                    Each activity may have different requirements, so please review the guidance below carefully.
+                </p>
+            </div>
 
-            <p>
-                Your safety is our top priority. Before taking part in any mountain trip or activity,
-                it is important to understand the risks involved and prepare accordingly.
-                Each activity may have different requirements, so please review the guidance below carefully.
-            </p>
+            <div class="content-box">
+                <h2>Before Your Trip</h2>
+                <ul>
+                    <li>Check the details of your selected activity and its difficulty level.</li>
+                    <li>Wear appropriate clothing and footwear suitable for the activity.</li>
+                    <li>Bring enough water, food, and any personal medication.</li>
+                    <li>Check weather conditions before travelling.</li>
+                    <li>Ensure your phone is fully charged.</li>
+                </ul>
+            </div>
 
-            <h2>Before Your Trip</h2>
-            <ul>
-                <li>Check the details of your selected activity and its difficulty level.</li>
-                <li>Wear appropriate clothing and footwear suitable for the activity.</li>
-                <li>Bring enough water, food, and any personal medication.</li>
-                <li>Check weather conditions before travelling.</li>
-                <li>Ensure your phone is fully charged.</li>
-            </ul>
+            <div class="content-box">
+                <h2>During Activities</h2>
+                <ul>
+                    <li>Always follow the instructions given by your guide.</li>
+                    <li>Stay with your group and do not wander off alone.</li>
+                    <li>Use the correct equipment provided for your activity.</li>
+                    <li>Be aware of your surroundings, including terrain and weather changes.</li>
+                    <li>Respect wildlife and do not disturb animals or their natural habitats.</li>
+                    <li>Respect other hikers and maintain a safe and friendly environment.</li>
+                    <li>Inform the guide immediately if you feel unwell or unsafe.</li>
+                </ul>
+            </div>
 
-            <h2>During Activities</h2>
-            <ul>
-                <li>Always follow the instructions given by your guide.</li>
-                <li>Stay with your group and do not wander off alone.</li>
-                <li>Use the correct equipment provided for your activity.</li>
-                <li>Be aware of your surroundings, including terrain and weather changes.</li>
-                <li>Respect wildlife and do not disturb animals or their natural habitats.</li>
-                <li>Respect other hikers and maintain a safe and friendly environment.</li>
-                <li>Inform the guide immediately if you feel unwell or unsafe.</li>
-            </ul>
+            <div class="content-box">
+                <h2>Activity-Specific Safety</h2>
+                <ul>
+                    <li><b>Hiking:</b> Stay on marked trails and watch for uneven ground.</li>
+                    <li><b>Climbing:</b> Use safety equipment properly and follow all instructions.</li>
+                    <li><b>Skiing / Snow Activities:</b> Be aware of snow conditions and control your speed.</li>
+                    <li><b>Other Activities:</b> Follow all safety briefings before starting.</li>
+                </ul>
+            </div>
 
-            <h2>Activity-Specific Safety</h2>
-            <ul>
-                <li><b>Hiking:</b> Stay on marked trails and watch for uneven ground.</li>
-                <li><b>Climbing:</b> Use safety equipment properly and follow all instructions.</li>
-                <li><b>Skiing / Snow Activities:</b> Be aware of snow conditions and control your speed.</li>
-                <li><b>Other Activities:</b> Follow all safety briefings before starting.</li>
-            </ul>
+            <div class="content-box">
+                <h2>Emergency Advice</h2>
+                <ul>
+                    <li>Stay calm and alert your guide immediately.</li>
+                    <li>Do not continue if you are injured or feel unsafe.</li>
+                    <li>Follow instructions carefully in case of severe weather or hazards.</li>
+                    <li>Keep emergency contact details accessible.</li>
+                </ul>
+            </div>
 
-            <h2>Emergency Advice</h2>
-            <ul>
-                <li>Stay calm and alert your guide immediately.</li>
-                <li>Do not continue if you are injured or feel unsafe.</li>
-                <li>Follow instructions carefully in case of severe weather or hazards.</li>
-                <li>Keep emergency contact details accessible.</li>
-            </ul>
-
-            <h2>Our Commitment</h2>
-            <p>
-                We aim to provide safe, organised, and enjoyable mountain experiences.
-                By following this safety guide, you help ensure a safe environment for yourself,
-                others, and the natural environment.
-            </p>
+            <div class="content-box">
+                <h2>Our Commitment</h2>
+                <p>
+                    We aim to provide safe, organised, and enjoyable mountain experiences.
+                    By following this safety guide, you help ensure a safe environment for yourself,
+                    others, and the natural environment.
+                </p>
+            </div>
 
         </div>
     </div>
