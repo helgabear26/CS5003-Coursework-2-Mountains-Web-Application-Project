@@ -3,9 +3,11 @@ package com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.dao.
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.dao.AccommodationDAO;
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.dao.BaseTemplateDAO;
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.entities.Accommodation;
+import jakarta.enterprise.context.ApplicationScoped;
 
 import java.util.List;
 
+@ApplicationScoped
 public class AccommodationDAOImplementation extends BaseTemplateDAO implements AccommodationDAO {
 
 

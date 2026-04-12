@@ -3,9 +3,11 @@ package com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.dao.
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.dao.ActivityPriceDAO;
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.dao.BaseTemplateDAO;
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.entities.ActivityPrice;
+import jakarta.enterprise.context.ApplicationScoped;
 
 import java.util.List;
 
+@ApplicationScoped
 public class ActivityPriceDAOImplementation extends BaseTemplateDAO implements ActivityPriceDAO {
     @Override
     public void createActivityPrice(ActivityPrice activityPrice) {

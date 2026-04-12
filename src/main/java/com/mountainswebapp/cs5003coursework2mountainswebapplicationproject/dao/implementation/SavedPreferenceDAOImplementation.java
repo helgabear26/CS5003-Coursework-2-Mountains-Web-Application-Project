@@ -3,9 +3,11 @@ package com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.dao.
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.dao.BaseTemplateDAO;
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.dao.SavedPreferenceDAO;
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.entities.SavedPreference;
+import jakarta.enterprise.context.ApplicationScoped;
 
 import java.util.List;
 
+@ApplicationScoped
 public class SavedPreferenceDAOImplementation extends BaseTemplateDAO implements SavedPreferenceDAO {
 
 

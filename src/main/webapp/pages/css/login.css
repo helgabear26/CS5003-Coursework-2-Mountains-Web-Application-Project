@@ -103,16 +103,31 @@ h1 {
     cursor: pointer;
 }
 
+.input-box {
+    margin-bottom: 15px;
+}
+
+.input-field {
+    margin-bottom: 0px;
+}
+
 .error-message {
     color: red;
+    display: block;
+    text-align: center;
+    margin-top: 6px;
+    margin-bottom: 0px;
     font-size: 14px;
-    margin-top: 4px;
-    min-height: 16px;
-    text-align: left;
 }
 
 .general-error {
-    margin-bottom: 15px;
+    color: red;
     text-align: center;
-    min-height: 16px;
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.general-error li {
+    text-align: center;
 }

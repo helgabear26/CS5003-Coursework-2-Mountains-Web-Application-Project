@@ -1,6 +1,5 @@
 package com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.beans;
 
-
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.dao.BookingDAO;
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.entities.Accommodation;
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.entities.Booking;
@@ -12,7 +11,6 @@ import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
-import java.awt.print.Book;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
@@ -27,6 +25,9 @@ public class BookingBean implements Serializable {
 
     @Inject
     private BookingDAO bookingDAO;
+
+    @Inject
+    private LoginBean loginBean;
 
     private Accommodation selectedAccommodation;
     private List<Booking> userBookings;
@@ -43,16 +44,17 @@ public class BookingBean implements Serializable {
         try {
             FacesContext context = FacesContext.getCurrentInstance();
 
-            if (context == null) return;
+            if (context == null) {
+                return;
+            }
 
-            Users user = (Users) context.getExternalContext()
-                    .getSessionMap()
-                    .get("loggedUser");
+            Users user = loginBean.getLoggedInUser();
 
             if (user == null) {
                 returnTo("/pages/dynamic/login.xhtml");
                 return;
             }
+
             this.userBookings = bookingDAO.getBookingsByUser(user.getId());
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, "Failed to load bookings", e);
@@ -66,11 +68,16 @@ public class BookingBean implements Serializable {
                 return;
             }
 
-            List<Booking> existing = bookingDAO.getBookingsByAccommodationAndDate(selectedAccommodation.getId(), datesBooked);
+            List<Booking> existing =
+                    bookingDAO.getBookingsByAccommodationAndDate(selectedAccommodation.getId(), datesBooked);
 
             this.available = existing.isEmpty();
 
-            addMessage(FacesMessage.SEVERITY_INFO, available ? "Available" : "Not Available", available ? "This date is available to book" : "Already booked");
+            addMessage(
+                    FacesMessage.SEVERITY_INFO,
+                    available ? "Available" : "Not Available",
+                    available ? "This date is available to book" : "Already booked"
+            );
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, "Failed to check availability", e);
         }
@@ -78,7 +85,7 @@ public class BookingBean implements Serializable {
 
     public String createBooking() {
         try {
-            Users user = getLoggedInUser();
+            Users user = loginBean.getLoggedInUser();
 
             if (user == null) {
                 returnTo("/pages/dynamic/login.xhtml");
@@ -110,7 +117,7 @@ public class BookingBean implements Serializable {
 
             addMessage(FacesMessage.SEVERITY_INFO, "Success", "Booking successful");
 
-            return "/pages/booking/confirmation.xhtml?faces-redirect=true"; // add this to the static pages
+            return "/pages/booking/confirmation.xhtml?faces-redirect=true";
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, "Booking failed", e);
             return null;
@@ -119,11 +126,13 @@ public class BookingBean implements Serializable {
 
     public void updateBooking(Booking booking) {
         try {
-            if (booking == null)
+            if (booking == null) {
                 return;
+            }
+
             bookingDAO.updateBooking(booking);
 
-            Users user = getLoggedInUser();
+            Users user = loginBean.getLoggedInUser();
 
             if (user != null) {
                 this.userBookings = bookingDAO.getBookingsByUser(user.getId());
@@ -137,7 +146,7 @@ public class BookingBean implements Serializable {
         try {
             bookingDAO.deleteBooking(bookingId);
 
-            Users user = getLoggedInUser();
+            Users user = loginBean.getLoggedInUser();
 
             if (user != null) {
                 this.userBookings = bookingDAO.getBookingsByUser(user.getId());

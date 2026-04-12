@@ -3,10 +3,13 @@ package com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.dao.
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.dao.BaseTemplateDAO;
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.dao.BookingDAO;
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.entities.Booking;
+import jakarta.enterprise.context.ApplicationScoped;
+
 
 import java.time.LocalDate;
 import java.util.List;
 
+@ApplicationScoped
 public class BookingDAOImplementation extends BaseTemplateDAO implements BookingDAO {
 
     @Override

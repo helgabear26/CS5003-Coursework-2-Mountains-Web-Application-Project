@@ -3,9 +3,11 @@ package com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.dao.
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.dao.BaseTemplateDAO;
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.dao.MountainActivitiesDAO;
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.entities.MountainActivities;
+import jakarta.enterprise.context.ApplicationScoped;
 
 import java.util.List;
 
+@ApplicationScoped
 public class MountainActivitiesDAOImplementation extends BaseTemplateDAO implements MountainActivitiesDAO {
 
     @Override

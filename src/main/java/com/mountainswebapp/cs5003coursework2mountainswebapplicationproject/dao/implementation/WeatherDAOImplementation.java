@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class WeatherDAOImplementation implements WeatherDAO {
 
-    private static final String API_KEY = ""
+    private static final String API_KEY = "";
     private static final String API_URL = "";
 
     @Override
