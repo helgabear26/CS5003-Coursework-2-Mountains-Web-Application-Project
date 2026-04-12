@@ -14,6 +14,11 @@ public class Admin {
 
     @Size(max = 255)
     @NotNull
+    @Column(name = "email", nullable = false)
+    private String email;
+
+    @Size(max = 255)
+    @NotNull
     @Column(name = "firstName", nullable = false)
     private String firstName;
 
@@ -22,17 +27,20 @@ public class Admin {
     @Column(name = "lastName", nullable = false)
     private String lastName;
 
-    @Size(max = 255)
-    @NotNull
-    @Column(name = "email", nullable = false)
-    private String email;
-
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getFirstName() {
@@ -49,14 +57,6 @@ public class Admin {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
 }

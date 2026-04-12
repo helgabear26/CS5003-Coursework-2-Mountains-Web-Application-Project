@@ -14,24 +14,24 @@ public class ActivityPrice {
     @Column(name = "priceID", nullable = false)
     private Integer id;
 
+    @Size(max = 10)
+    @NotNull
+    @Column(name = "currency", nullable = false, length = 10)
+    private String currency;
+
     @NotNull
     @Column(name = "priceAmount", nullable = false, precision = 10, scale = 2)
     private BigDecimal priceAmount;
-
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "activityID", nullable = false)
-    private MountainActivities activityID;
 
     @Size(max = 255)
     @NotNull
     @Column(name = "priceType", nullable = false)
     private String priceType;
 
-    @Size(max = 10)
     @NotNull
-    @Column(name = "currency", nullable = false, length = 10)
-    private String currency;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "activityID", nullable = false)
+    private MountainActivities activityID;
 
     public Integer getId() {
         return id;
@@ -39,6 +39,14 @@ public class ActivityPrice {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
     }
 
     public BigDecimal getPriceAmount() {
@@ -49,14 +57,6 @@ public class ActivityPrice {
         this.priceAmount = priceAmount;
     }
 
-    public MountainActivities getActivityID() {
-        return activityID;
-    }
-
-    public void setActivityID(MountainActivities activityID) {
-        this.activityID = activityID;
-    }
-
     public String getPriceType() {
         return priceType;
     }
@@ -65,12 +65,12 @@ public class ActivityPrice {
         this.priceType = priceType;
     }
 
-    public String getCurrency() {
-        return currency;
+    public MountainActivities getActivityID() {
+        return activityID;
     }
 
-    public void setCurrency(String currency) {
-        this.currency = currency;
+    public void setActivityID(MountainActivities activityID) {
+        this.activityID = activityID;
     }
 
 }

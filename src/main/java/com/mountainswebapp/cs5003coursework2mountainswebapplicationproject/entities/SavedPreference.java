@@ -12,19 +12,19 @@ public class SavedPreference {
     @Column(name = "savedItemID", nullable = false)
     private Integer id;
 
+    @NotNull
+    @Column(name = "itemID", nullable = false)
+    private Integer itemID;
+
     @Size(max = 255)
     @NotNull
     @Column(name = "itemType", nullable = false)
     private String itemType;
 
     @NotNull
-    @Column(name = "itemID", nullable = false)
-    private Integer itemID;
-
-    @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "userID", nullable = false)
-    private Users usersID;
+    private Users userID;
 
     public Integer getId() {
         return id;
@@ -32,14 +32,6 @@ public class SavedPreference {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getItemType() {
-        return itemType;
-    }
-
-    public void setItemType(String itemType) {
-        this.itemType = itemType;
     }
 
     public Integer getItemID() {
@@ -50,12 +42,20 @@ public class SavedPreference {
         this.itemID = itemID;
     }
 
-    public Users getUserID() {
-        return usersID;
+    public String getItemType() {
+        return itemType;
     }
 
-    public void setUserID(Users usersID) {
-        this.usersID = usersID;
+    public void setItemType(String itemType) {
+        this.itemType = itemType;
+    }
+
+    public Users getUserID() {
+        return userID;
+    }
+
+    public void setUserID(Users userID) {
+        this.userID = userID;
     }
 
 }

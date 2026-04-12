@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.45, for Win64 (x86_64)
 --
--- Host: localhost    Database: MountainsWebAppDB
+-- Host: 127.0.0.1    Database: mountainswebappdb
 -- ------------------------------------------------------
 -- Server version	8.0.45
 
@@ -16,6 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `accommodation`
+--
+
+DROP TABLE IF EXISTS `accommodation`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `accommodation` (
+  `accommodationID` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `coordinates` varchar(255) NOT NULL,
+  `mountainID` int NOT NULL,
+  PRIMARY KEY (`accommodationID`),
+  KEY `FK_accommodation_mountain` (`mountainID`),
+  CONSTRAINT `FK_accommodation_mountain` FOREIGN KEY (`mountainID`) REFERENCES `mountains` (`mountainID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `accommodation`
+--
+
+LOCK TABLES `accommodation` WRITE;
+/*!40000 ALTER TABLE `accommodation` DISABLE KEYS */;
+/*!40000 ALTER TABLE `accommodation` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `activity_price`
 --
 
@@ -24,13 +52,13 @@ DROP TABLE IF EXISTS `activity_price`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `activity_price` (
   `priceID` int NOT NULL AUTO_INCREMENT,
-  `priceAmount` decimal(10,2) NOT NULL,
-  `activityID` int NOT NULL,
-  `priceType` varchar(255) NOT NULL,
   `currency` varchar(10) NOT NULL,
+  `priceAmount` decimal(10,2) NOT NULL,
+  `priceType` varchar(255) NOT NULL,
+  `activityID` int NOT NULL,
   PRIMARY KEY (`priceID`),
-  KEY `activityID` (`activityID`),
-  CONSTRAINT `activity_price_ibfk_1` FOREIGN KEY (`activityID`) REFERENCES `mountain_activities` (`activityID`)
+  KEY `FK_activity_price_activityID` (`activityID`),
+  CONSTRAINT `FK_activity_price_activityID` FOREIGN KEY (`activityID`) REFERENCES `mountain_activities` (`activityID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -52,11 +80,10 @@ DROP TABLE IF EXISTS `admin`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `admin` (
   `adminID` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
   `firstName` varchar(255) NOT NULL,
   `lastName` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  PRIMARY KEY (`adminID`),
-  UNIQUE KEY `email` (`email`)
+  PRIMARY KEY (`adminID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -70,72 +97,34 @@ LOCK TABLES `admin` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `booking_information`
+-- Table structure for table `booking`
 --
 
-DROP TABLE IF EXISTS `booking_information`;
+DROP TABLE IF EXISTS `booking`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `booking_information` (
-  `bookingInformationID` int NOT NULL AUTO_INCREMENT,
-  `accommodationName` varchar(255) NOT NULL,
-  `checkInDate` date NOT NULL,
-  `checkOutDate` date NOT NULL,
-  `totalPrice` decimal(10,2) NOT NULL,
-  `bookingStatus` varchar(255) NOT NULL,
-  `noOfGuests` int NOT NULL,
-  `bookingID` int NOT NULL,
-  `userID` int NOT NULL,
-  PRIMARY KEY (`bookingInformationID`),
-  KEY `bookingID` (`bookingID`),
-  KEY `userID` (`userID`),
-  CONSTRAINT `booking_information_ibfk_1` FOREIGN KEY (`bookingID`) REFERENCES `booking_system` (`bookingID`),
-  CONSTRAINT `booking_information_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `booking_information`
---
-
-LOCK TABLES `booking_information` WRITE;
-/*!40000 ALTER TABLE `booking_information` DISABLE KEYS */;
-/*!40000 ALTER TABLE `booking_information` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `booking_system`
---
-
-DROP TABLE IF EXISTS `booking_system`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `booking_system` (
+CREATE TABLE `booking` (
   `bookingID` int NOT NULL AUTO_INCREMENT,
-  `accommodationName` varchar(255) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `coordinates` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `phoneNumber` varchar(20) NOT NULL,
-  `availability` varchar(255) NOT NULL,
-  `dates_booked` varchar(255) NOT NULL,
-  `mountainID` int NOT NULL,
+  `accommodationID` int NOT NULL,
   `userID` int NOT NULL,
+  `datesBooked` date NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phoneNo` varchar(20) NOT NULL,
   PRIMARY KEY (`bookingID`),
-  KEY `mountainID` (`mountainID`),
-  KEY `userID` (`userID`),
-  CONSTRAINT `booking_system_ibfk_1` FOREIGN KEY (`mountainID`) REFERENCES `mountains` (`mountainID`),
-  CONSTRAINT `booking_system_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`)
+  KEY `FK_booking_accommodation` (`accommodationID`),
+  KEY `FK_booking_user` (`userID`),
+  CONSTRAINT `FK_booking_accommodation` FOREIGN KEY (`accommodationID`) REFERENCES `accommodation` (`accommodationID`),
+  CONSTRAINT `FK_booking_user` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `booking_system`
+-- Dumping data for table `booking`
 --
 
-LOCK TABLES `booking_system` WRITE;
-/*!40000 ALTER TABLE `booking_system` DISABLE KEYS */;
-/*!40000 ALTER TABLE `booking_system` ENABLE KEYS */;
+LOCK TABLES `booking` WRITE;
+/*!40000 ALTER TABLE `booking` DISABLE KEYS */;
+/*!40000 ALTER TABLE `booking` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -147,15 +136,15 @@ DROP TABLE IF EXISTS `mountain_activities`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `mountain_activities` (
   `activityID` int NOT NULL AUTO_INCREMENT,
-  `mountainID` int NOT NULL,
   `activityName` varchar(255) NOT NULL,
-  `description` varchar(255) NOT NULL,
   `category` varchar(255) NOT NULL,
-  `seasonStart` date NOT NULL,
+  `description` varchar(255) NOT NULL,
   `seasonEnd` date NOT NULL,
+  `seasonStart` date NOT NULL,
+  `mountainID` int NOT NULL,
   PRIMARY KEY (`activityID`),
-  KEY `mountainID` (`mountainID`),
-  CONSTRAINT `mountain_activities_ibfk_1` FOREIGN KEY (`mountainID`) REFERENCES `mountains` (`mountainID`)
+  KEY `FK_mountain_activities_mountainID` (`mountainID`),
+  CONSTRAINT `FK_mountain_activities_mountainID` FOREIGN KEY (`mountainID`) REFERENCES `mountains` (`mountainID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -177,12 +166,12 @@ DROP TABLE IF EXISTS `mountains`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `mountains` (
   `mountainID` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `mountainRange` varchar(255) NOT NULL,
-  `countryRegion` varchar(255) NOT NULL,
   `coordinates` varchar(255) NOT NULL,
+  `countryRegion` varchar(255) NOT NULL,
   `difficultyRating` int NOT NULL,
   `elevation` int NOT NULL,
+  `mountainRange` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
   PRIMARY KEY (`mountainID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -197,35 +186,6 @@ LOCK TABLES `mountains` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `review_system`
---
-
-DROP TABLE IF EXISTS `review_system`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `review_system` (
-  `reviewID` int NOT NULL AUTO_INCREMENT,
-  `comments_description` varchar(255) NOT NULL,
-  `bookingID` int NOT NULL,
-  `userID` int NOT NULL,
-  PRIMARY KEY (`reviewID`),
-  KEY `bookingID` (`bookingID`),
-  KEY `userID` (`userID`),
-  CONSTRAINT `review_system_ibfk_1` FOREIGN KEY (`bookingID`) REFERENCES `booking_system` (`bookingID`),
-  CONSTRAINT `review_system_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `review_system`
---
-
-LOCK TABLES `review_system` WRITE;
-/*!40000 ALTER TABLE `review_system` DISABLE KEYS */;
-/*!40000 ALTER TABLE `review_system` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `saved_preferences`
 --
 
@@ -234,12 +194,12 @@ DROP TABLE IF EXISTS `saved_preferences`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `saved_preferences` (
   `savedItemID` int NOT NULL AUTO_INCREMENT,
-  `itemType` varchar(255) NOT NULL,
   `itemID` int NOT NULL,
+  `itemType` varchar(255) NOT NULL,
   `userID` int NOT NULL,
   PRIMARY KEY (`savedItemID`),
-  KEY `userID` (`userID`),
-  CONSTRAINT `saved_preferences_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`)
+  KEY `FK_saved_preferences_userID` (`userID`),
+  CONSTRAINT `FK_saved_preferences_userID` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -265,8 +225,10 @@ CREATE TABLE `users` (
   `lastName` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
   PRIMARY KEY (`userID`),
-  UNIQUE KEY `email` (`email`)
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `unique_username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -288,4 +250,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-03-26 13:39:32
+-- Dump completed on 2026-04-12  9:03:14

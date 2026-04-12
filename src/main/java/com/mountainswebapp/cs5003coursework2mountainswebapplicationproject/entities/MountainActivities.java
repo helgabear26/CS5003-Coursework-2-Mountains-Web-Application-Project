@@ -14,11 +14,6 @@ public class MountainActivities {
     @Column(name = "activityID", nullable = false)
     private Integer id;
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "mountainID", nullable = false)
-    private Mountain mountainID;
-
     @Size(max = 255)
     @NotNull
     @Column(name = "activityName", nullable = false)
@@ -26,21 +21,26 @@ public class MountainActivities {
 
     @Size(max = 255)
     @NotNull
-    @Column(name = "description", nullable = false)
-    private String description;
+    @Column(name = "category", nullable = false)
+    private String category;
 
     @Size(max = 255)
     @NotNull
-    @Column(name = "category", nullable = false)
-    private String category;
+    @Column(name = "description", nullable = false)
+    private String description;
+
+    @NotNull
+    @Column(name = "seasonEnd", nullable = false)
+    private LocalDate seasonEnd;
 
     @NotNull
     @Column(name = "seasonStart", nullable = false)
     private LocalDate seasonStart;
 
     @NotNull
-    @Column(name = "seasonEnd", nullable = false)
-    private LocalDate seasonEnd;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "mountainID", nullable = false)
+    private Mountain mountainID;
 
     public Integer getId() {
         return id;
@@ -48,14 +48,6 @@ public class MountainActivities {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Mountain getMountainID() {
-        return mountainID;
-    }
-
-    public void setMountainID(Mountain mountainID) {
-        this.mountainID = mountainID;
     }
 
     public String getActivityName() {
@@ -66,6 +58,14 @@ public class MountainActivities {
         this.activityName = activityName;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -74,12 +74,12 @@ public class MountainActivities {
         this.description = description;
     }
 
-    public String getCategory() {
-        return category;
+    public LocalDate getSeasonEnd() {
+        return seasonEnd;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setSeasonEnd(LocalDate seasonEnd) {
+        this.seasonEnd = seasonEnd;
     }
 
     public LocalDate getSeasonStart() {
@@ -90,12 +90,12 @@ public class MountainActivities {
         this.seasonStart = seasonStart;
     }
 
-    public LocalDate getSeasonEnd() {
-        return seasonEnd;
+    public Mountain getMountainID() {
+        return mountainID;
     }
 
-    public void setSeasonEnd(LocalDate seasonEnd) {
-        this.seasonEnd = seasonEnd;
+    public void setMountainID(Mountain mountainID) {
+        this.mountainID = mountainID;
     }
 
 }
