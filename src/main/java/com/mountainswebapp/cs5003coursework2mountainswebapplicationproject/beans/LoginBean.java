@@ -15,7 +15,7 @@ import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.entit
 @SessionScoped
 public class LoginBean implements Serializable {
 
-    private String email;
+    private String username;
     private String password;
     private Users loggedInUser;
 
@@ -23,17 +23,17 @@ public class LoginBean implements Serializable {
 
         boolean hasError = false;
 
-        // Check empty email
-        if (email == null || email.trim().isEmpty()) {
-            FacesContext.getCurrentInstance().addMessage("loginForm:email",
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Email is required"));
+        // Check empty username
+        if (username == null || username.trim().isEmpty()) {
+            FacesContext.getCurrentInstance().addMessage("loginForm:username",
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Username is required."));
             hasError = true;
         }
 
         // Check empty password
         if (password == null || password.trim().isEmpty()) {
             FacesContext.getCurrentInstance().addMessage("loginForm:password",
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Password is required"));
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Password is required."));
             hasError = true;
         }
 
@@ -45,14 +45,14 @@ public class LoginBean implements Serializable {
         // TEMP login check (replace with database later)
         Users user = null;
 
-        if (email.equals("test@example.com") && password.equals("password123")) {
+        if (username.equals("testuser") && password.equals("password123")) {
             user = new Users(); // replace with real DB user later
         }
 
         // Invalid login
         if (user == null) {
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Incorrect email or password"));
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Incorrect username and/or password."));
             return null;
         }
 
@@ -71,12 +71,12 @@ public class LoginBean implements Serializable {
         return loggedInUser;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

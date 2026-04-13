@@ -23,14 +23,15 @@
                             showDetail="true"
                             layout="list"
                             styleClass="general-error"
-                            />
+                />
 
+                <!-- ✅ CHANGED HERE -->
                 <div class="input-box">
-                    <h:inputText id="email"
-                                 value="#{loginBean.email}"
+                    <h:inputText id="username"
+                                 value="#{loginBean.username}"
                                  styleClass="input-field"
-                                 pt:placeholder="Email" />
-                    <h:message for="email" styleClass="error-message" />
+                                 pt:placeholder="Username" />
+                    <h:message for="username" styleClass="error-message" />
                 </div>
 
                 <div class="input-box">
