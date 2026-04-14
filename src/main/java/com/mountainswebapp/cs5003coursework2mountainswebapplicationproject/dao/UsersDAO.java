@@ -1,6 +1,8 @@
 package com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.dao;
 
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.entities.Users;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.SessionScoped;
 
 import java.util.List;
 

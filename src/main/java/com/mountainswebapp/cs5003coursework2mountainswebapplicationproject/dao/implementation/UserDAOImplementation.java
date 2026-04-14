@@ -3,9 +3,11 @@ package com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.dao.
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.dao.BaseTemplateDAO;
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.dao.UsersDAO;
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.entities.Users;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.transaction.Transactional;
 
 import java.util.List;
-
+@ApplicationScoped
 public class UserDAOImplementation extends BaseTemplateDAO implements UsersDAO {
     @Override
     public void createUser(Users user) {
