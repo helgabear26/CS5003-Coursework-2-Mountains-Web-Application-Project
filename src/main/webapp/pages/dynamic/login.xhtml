@@ -10,7 +10,19 @@
     <link rel="stylesheet" type="text/css" href="../css/login.css" />
     <script type="text/javascript" src="../js/script.js"></script>
 </h:head>
+
 <h:body>
+
+    <!-- Top navbar -->
+    <div class="top-navbar">
+        <a href="../dynamic/homePage.xhtml" class="logo-container">
+            <h:graphicImage library="images"
+                            name="Mountain website logo 2.png"
+                            styleClass="logo" />
+            <span class="logo-text">Mountains</span>
+        </a>
+    </div>
+
     <div class="content">
         <div class="login-box">
             <h1>Have an account?</h1>
@@ -22,10 +34,8 @@
                             showSummary="false"
                             showDetail="true"
                             layout="list"
-                            styleClass="general-error"
-                />
+                            styleClass="general-error" />
 
-                <!-- ✅ CHANGED HERE -->
                 <div class="input-box">
                     <h:inputText id="username"
                                  value="#{loginBean.username}"
@@ -53,5 +63,6 @@
             </h:form>
         </div>
     </div>
+
 </h:body>
 </html>

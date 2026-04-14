@@ -12,15 +12,15 @@ public class BaseTemplateDAO {
 
     protected EntityManagerFactory emf;
 
-    public BaseTemplateDAO(){
-
+    public BaseTemplateDAO() {
         this.emf = Persistence.createEntityManagerFactory("MountainsWebAppDB");
     }
 
     protected void executeWrite(Consumer<EntityManager> operation) {
         EntityManager em = emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
-        try{
+
+        try {
             et.begin();
             operation.accept(em);
             et.commit();
@@ -34,7 +34,7 @@ public class BaseTemplateDAO {
         }
     }
 
-    protected <T> T executeRead(Function<EntityManager, T> operation){
+    protected <T> T executeRead(Function<EntityManager, T> operation) {
         EntityManager em = emf.createEntityManager();
         try {
             return operation.apply(em);

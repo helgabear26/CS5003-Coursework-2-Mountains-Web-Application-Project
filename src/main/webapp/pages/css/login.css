@@ -1,33 +1,66 @@
 body {
-    background: url("../background images/background.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background: url("../background images/Mountain2.jpg") center center / cover no-repeat;
     margin: 0;
     padding: 0;
-    font-family: "Times New Roman", Times, serif;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
     color: white;
 }
 
+/* Top navbar */
+.top-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #1f3b5c;
+    padding: 10px 30px;
+    border-bottom: 4px solid #0a0d36;
+    box-sizing: border-box;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo {
+    width: 70px;
+    height: auto;
+    margin-right: 14px;
+}
+
+.logo-text {
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* Main content area */
 .content {
+    min-height: calc(100vh - 94px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+    box-sizing: border-box;
     background: transparent;
 }
 
+/* Login box */
 .login-box {
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(8px);
+    background: rgba(31, 59, 92, 0.45);
+    backdrop-filter: blur(12px);
     padding: 40px;
     border-radius: 20px;
     width: 350px;
     text-align: center;
     box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
 }
 
-content-box {
+.content-box {
     background-color: rgba(167, 199, 231, 0.9);
     padding: 20px;
     margin-bottom: 25px;
@@ -35,20 +68,23 @@ content-box {
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
+/* Headings */
 h1 {
     margin-top: 0;
     margin-bottom: 10px;
     font-weight: normal;
     font-style: italic;
+    color: white;
 }
 
 .header-text {
     font-weight: normal;
     font-style: italic;
     margin-bottom: 16px;
-    color: #274c77;
+    color: #a7c7e7;
 }
 
+/* Form layout */
 .form-group {
     width: 100%;
     margin-bottom: 8px;
@@ -56,17 +92,18 @@ h1 {
 
 .input-box {
     width: 100%;
-    margin: 10px 0;
+    margin: 10px 0 15px 0;
     position: relative;
     box-sizing: border-box;
 }
 
+/* Inputs */
 .input-box input {
     width: 100%;
     padding: 15px;
-    border-radius: 5px;
-    border: 1px solid rgba(255,255,255,0.4);
-    background: rgba(255,255,255,0.1);
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.15);
     color: white;
     outline: none;
     box-sizing: border-box;
@@ -74,9 +111,10 @@ h1 {
 }
 
 .input-box input::placeholder {
-    color: #0a0d36;
+    color: rgba(255,255,255,0.7);
 }
 
+/* Button */
 .button {
     width: 100%;
     padding: 15px;
@@ -84,13 +122,19 @@ h1 {
     margin-bottom: 20px;
     border-radius: 30px;
     border: none;
-    background: cadetblue;
-    color: #000;
+    background: #3a7ca5;
+    color: white;
     font-weight: bold;
     cursor: pointer;
     box-sizing: border-box;
+    transition: 0.3s;
 }
 
+.button:hover {
+    background: #2f6690;
+}
+
+/* Password icon */
 .password-wrapper {
     position: relative;
 }
@@ -103,25 +147,22 @@ h1 {
     cursor: pointer;
 }
 
-.input-box {
-    margin-bottom: 15px;
-}
-
+/* Validation messages */
 .input-field {
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 .error-message {
-    color: red;
+    color: darkred;
     display: block;
     text-align: center;
     margin-top: 6px;
-    margin-bottom: 0px;
+    margin-bottom: 0;
     font-size: 14px;
 }
 
 .general-error {
-    color: red;
+    color: darkred;
     text-align: center;
     list-style: none;
     padding: 0;
@@ -130,4 +171,24 @@ h1 {
 
 .general-error li {
     text-align: center;
+}
+
+/* Bottom text */
+h3 {
+    color: white;
+}
+
+/* FIX purple links */
+a {
+    color: #a7c7e7;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #a7c7e7;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #cfe3ff;
 }
