@@ -3,12 +3,14 @@ package com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.dao.
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.dao.BaseTemplateDAO;
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.dao.UsersDAO;
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.entities.Users;
+
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.transaction.Transactional;
 
 import java.util.List;
+
 @ApplicationScoped
 public class UserDAOImplementation extends BaseTemplateDAO implements UsersDAO {
+
     @Override
     public void createUser(Users user) {
         executeWrite(em -> em.persist(user));
@@ -21,12 +23,14 @@ public class UserDAOImplementation extends BaseTemplateDAO implements UsersDAO {
 
     @Override
     public Users authenticateUser(String username, String password) {
-        return executeRead(em -> {List<Users> users = em.createQuery(
-                "SELECT u FROM Users u WHERE u.username = :username AND u.password = :password",
-                Users.class)
-                .setParameter("username", username)
-                .setParameter("password", password)
-                .getResultList();
+        return executeRead(em -> {
+            List<Users> users = em.createQuery(
+                            "SELECT u FROM Users u WHERE u.username = :username AND u.password = :password",
+                            Users.class)
+                    .setParameter("username", username)
+                    .setParameter("password", password)
+                    .getResultList();
+
             return users.isEmpty() ? null : users.get(0);
         });
     }
@@ -35,19 +39,20 @@ public class UserDAOImplementation extends BaseTemplateDAO implements UsersDAO {
     public Users getUserByUsername(String username) {
         return executeRead(em -> {
             List<Users> users = em.createQuery(
-                    "SELECT u FROM Users u WHERE u.username = :username", Users.class)
+                            "SELECT u FROM Users u WHERE u.username = :username",
+                            Users.class)
                     .setParameter("username", username)
                     .getResultList();
-                    return users.isEmpty() ? null : users.get(0);
+
+            return users.isEmpty() ? null : users.get(0);
         });
     }
 
     @Override
     public List<Users> getAllUsers() {
         return executeRead(em ->
-                em.createQuery("SELECT u FROM Users u", Users.class)
-                    .getResultList()
-            );
+                em.createQuery("SELECT u FROM Users u", Users.class).getResultList()
+        );
     }
 
     @Override

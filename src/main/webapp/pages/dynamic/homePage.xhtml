@@ -5,40 +5,42 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
     <meta charset="UTF-8"/>
-    <title> mountain home Page</title>
-    <link rel="stylesheet" type="text/css" href = "../css/Homepage.css"/>
+    <title>mountain home Page</title>
+    <link rel="stylesheet" type="text/css" href="../css/Homepage.css"/>
 </h:head>
+
 <h:body>
 
-    <div class = "top-navbar">
-        <div class = "logo">
-            <a href="#">Menu</a>
-        </div>
+    <div class="top-navbar">
+
+        <a href="../dynamic/homePage.xhtml" class="logo-container">
+            <h:graphicImage library="images"
+                            name="Mountain website logo 2.png"
+                            styleClass="logo"/>
+            <span class="logo-text">Mountains</span>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="../static/aboutUs.xhtml">About Us</a></li>
+            <li><a href="../static/safetyGuide.xhtml">Safety Guide</a></li>
+            <li><a href="../dynamic/login.xhtml">Login</a></li>
+
+            <li class="dropdown">
+                <a href="#">Menu &#9662;</a>
+                <ul class="dropdown-menu">
+                    <li><a href="activitiesBooking.xhtml">Activities</a></li>
+                    <li><a href="mountains.xhtml">Mountains</a></li>
+                    <li><a href="weather.xhtml">Weather</a></li>
+                    <li><a href="bookmarks.xhtml">Bookmarks</a></li>
+                </ul>
+            </li>
+        </ul>
     </div>
-
-    <ul class = "nav-links">
-        <li><a href="../static/aboutUs.xhtml">About Us</a> </li>
-        <li><a href="../static/safetyGuide.xhtml">Safety Guide</a> </li>
-        <li><a href="../dynamic/login.xhtml">Login </a></li>
-
-
-        <li class="dropdown">
-            <a href="#"> More &#9662;</a>
-            <ul class = "dropdown-menu">
-                <li><a href="activitiesBooking.xhtml">Activities</a></li>
-                <li><a href="mountains.xhtml">Mountains</a></li>
-                <li><a href = "weather.xhtml">Weather</a></li>
-                <li><a href="bookmarks.xhtml">bookmarks</a> </li>
-            </ul>
-        </li>
-
-    </ul>
 
     <div class="center-content">
-        <h1> Welcome to our Website</h1>
-        <p>Your journey starts here </p>
+        <h1>Welcome to our Website</h1>
+        <p>Your journey starts here</p>
     </div>
-
 
 </h:body>
 </html>
