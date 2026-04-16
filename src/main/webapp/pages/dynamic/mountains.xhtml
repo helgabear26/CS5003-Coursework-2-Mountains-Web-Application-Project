@@ -1,40 +1,73 @@
 <!DOCTYPE html>
-<html
-        xmlns:h="http://xmlns.jcp.org/jsf/html"
-        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns="http://www.w3.org/1999/xhtml">
-<head>
+<html xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns="http://www.w3.org/1999/xhtml">
+<h:head>
     <meta charset="UTF-8"/>
     <title>mountains Page</title>
+    <h:outputStylesheet library="css" name="style.css"/>
     <link rel="stylesheet" type="text/css" href="../css/layout.css"/>
-</head>
+</h:head>
 <body>
 <div class="topbar">
     <a href="http://localhost:8080/CS5003Coursework2MountainsWebApplicationProject-1.0-SNAPSHOT/pages/dynamic/homePage.xhtml" class="logo-container">
-        <h:graphicImage library= "images" name = "Mountain website logo 2.png" styleClass = "logo"/>.
+        <h:graphicImage library="images" name="Mountain website logo 2.png" styleClass="logo"/>
         <span class="logo-text">Mountains</span>
     </a>
+
+    <h:form styleClass="topbar-right">
+        <h:panelGroup rendered="#{empty loginBean.loggedInUser}">
+            <h:link outcome="/pages/dynamic/login.xhtml" styleClass="login-icon">
+                <h:graphicImage library="images" name="Login.png" styleClass="login-img"/>
+                <span class="login-text">log in</span>
+            </h:link>
+        </h:panelGroup>
+        <h:panelGroup rendered="#{not empty loginBean.loggedInUser}">
+            <h:outputText value="#{loginBean.loggedInUser.username}" styleClass ="login-text"/>
+            <h:commandLink value="Logout" action="#{loginBean.logout}" styleClass="logout-link"/>
+        </h:panelGroup>
+    </h:form>
 </div>
 <div class="layout">
     <div class="sidebar">
-        <h2>MENU</h2>
         <a href ="../static/aboutUs.xhtml">AboutUs</a>
         <a href ="../static/safetyGuide.xhtml">Safety Guide</a>
-
+        <a href="../dynamic/mountains.xhtml">view mountains</a>
+        <a href="../dynamic/myProfile.xhtml">My Profile</a>
+        <a href="../dynamic/homePage.xhtml">Home</a>
+        <a href="../dynamic/weather.xhtml/">weather</a>
+        <a href="../dynamic/bookmarks.xhtml">BookMarks</a>
     </div>
     <div class="content">
         <div class="content-box">
-            <h1>Mountain informations</h1>
-        </div>
+            <h1>Mountain informations</h1> <h:form>
+            <h:dataTable value="#{mountainListBean.mountains}" var="m">
+                <h:column>
+                    <f:facet name ="header">Name</f:facet>
+                    #{m.name}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Region</f:facet>
+                    #{m.countryRegion}
+                </h:column>
+                <h:column>
+                    <f:facet name ="header">Elevation</f:facet>
+                    #{m.elevation}
+                </h:column>
+                <h:column>
+                    <f:facet name ="header">Actions</f:facet>
+                    <h:commandButton value ="Select Mountain"
+                                     action="#{mountainListBean.selectMountain(m)}"
+                                     styleClass="button"/>
 
+                </h:column>
+            </h:dataTable>
+        </h:form>
+        </div>
     </div>
 </div>
-
-
-
-
 <ui:fragment>
-
 </ui:fragment>
 </body>
 </html>

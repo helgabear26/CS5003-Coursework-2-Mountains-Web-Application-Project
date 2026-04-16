@@ -7,6 +7,9 @@
         <jta-data-source>jdbc/MountainsWebAppDB</jta-data-source>
 
         <class>com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.entities.Users</class>
+        <class>com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.entities.Mountain</class>
+        <class>com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.entities.Accommodation</class>
+        <class>com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.entities.MountainActivities</class>
         <properties>
 
             <property name="eclipselink.logging.level" value="FINE"/>

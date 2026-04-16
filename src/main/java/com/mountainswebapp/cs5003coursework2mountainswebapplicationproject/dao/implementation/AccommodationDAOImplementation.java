@@ -27,9 +27,10 @@ public class AccommodationDAOImplementation extends BaseTemplateDAO implements A
     }
 
     @Override
-    public List<Accommodation> getByMountainID(Integer mountainID) {
-        return executeRead(em -> em.createQuery("SELECT a FROM Accommodation a WHERE a.mountainID.id = :mountainID", Accommodation.class)
-                .setParameter("mountainID", mountainID)
+    public List<Accommodation> getByMountainID(Integer mountainId) {
+        return executeRead(em ->
+                em.createQuery("SELECT a FROM Accommodation a WHERE a.mountainID.id = :mountainID", Accommodation.class)
+                .setParameter("mountainID", mountainId)
                 .getResultList());
     }
 

@@ -14,8 +14,7 @@ public class BookingDAOImplementation extends BaseTemplateDAO implements Booking
 
     @Override
     public void createBooking(Booking booking) {
-        executeWrite(em -> {
-            booking.setDatesBooked(LocalDate.now());
+        executeWrite(em -> {;
             em.persist(booking);
         });
     }
@@ -35,8 +34,12 @@ public class BookingDAOImplementation extends BaseTemplateDAO implements Booking
 
     @Override
     public List<Booking> getBookingsByUser(Integer userID) {
-        return executeRead( em -> em.createQuery("SELECT b FROM Booking b WHERE b.userID.id = :userID ORDER BY b.datesBooked DESC",
-                Booking.class)
+        return executeRead( em ->
+                em.createQuery(
+                        "SELECT b FROM Booking b " +
+                                "JOIN FETCH b.accommodationID "+
+                                " WHERE b.userID.id = :userID "+
+                                "ORDER BY b.datesBooked DESC", Booking.class)
                 .setParameter("userID", userID)
                 .getResultList()
         );

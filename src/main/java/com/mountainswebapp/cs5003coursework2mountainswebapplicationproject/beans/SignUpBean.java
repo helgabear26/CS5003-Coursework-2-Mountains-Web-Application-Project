@@ -23,6 +23,9 @@ public class SignUpBean implements Serializable {
     @Inject
     private UsersDAO usersDAO;
 
+    @Inject
+    private LoginBean loginBean;
+
     public String register()
     {
         if(!password.equals(confirmPassword))
@@ -50,7 +53,10 @@ public class SignUpBean implements Serializable {
 
         usersDAO.createUser(user);
 
-        return "../pages/dynamic/homePage.xhtml?faces-redirect=true";
+        Users savedUser = usersDAO.getUserByUsername(username);
+        loginBean.setLoggedInUser(savedUser);
+
+        return "/pages/dynamic/homePage.xhtml?faces-redirect=true";
     }
     public String getFirstName() {
         return firstName;
