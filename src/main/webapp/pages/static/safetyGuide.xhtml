@@ -20,10 +20,25 @@
             <h:graphicImage library="images" name="Mountain website logo 2.png" styleClass="logo"/>
             <span class="logo-text">Mountains</span>
         </a>
-        <a href="http://localhost:8080/CS5003Coursework2MountainsWebApplicationProject-1.0-SNAPSHOT/pages/dynamic/login.xhtml" class="login-icon">
-            <h:graphicImage library="images" name="Login.png" styleClass="login-img"/>
-            <span class="login-text">Log in</span>
-        </a>
+        <h:form styleClass="topbar-right">
+            <h:panelGroup rendered="#{empty loginBean.loggedInUser}">
+                <h:link outcome="/pages/dynamic/login.xhtml"
+                        styleClass="login-icon">
+                    <h:graphicImage library="images"
+                                    name="Login.png"
+                                    styleClass="login-img"/>
+                    <span class="login-text">log in</span>
+                </h:link>
+            </h:panelGroup>
+            <h:panelGroup rendered="#{not empty loginBean.loggedInUser}">
+                <h:outputText value="#{loginBean.loggedInUser.username}"
+                              styleClass ="login-text"/>
+                <h:commandLink value="Logout"
+                               action="#{loginBean.logout}"
+                               styleClass="logout-link"/>
+            </h:panelGroup>
+
+        </h:form>
     </div>
 
     <!-- LAYOUT -->
@@ -35,6 +50,10 @@
             <a href="http://localhost:8080/CS5003Coursework2MountainsWebApplicationProject-1.0-SNAPSHOT/pages/dynamic/homePage.xhtml">Home</a>
             <a href="http://localhost:8080/CS5003Coursework2MountainsWebApplicationProject-1.0-SNAPSHOT/pages/static/aboutUs.xhtml">About Us</a>
             <a href="#" class="active">Safety Guide</a>
+            <a href="../dynamic/mountains.xhtml">view mountains</a>
+            <a href="../dynamic/myProfile.xhtml">My Profile</a>
+            <a href="../dynamic/weather.xhtml/">weather</a>
+            <a href="../dynamic/bookmarks.xhtml">BookMarks</a>
         </div>
 
         <!-- CONTENT -->

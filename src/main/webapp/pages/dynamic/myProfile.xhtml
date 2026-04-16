@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f ="http://xmlns.jcp.org/jsf/core"
+      xmlns="http://www.w3.org/1999/xhtml">
+
+<h:head>
+    <meta charset="UTF-8"/>
+    <title>USER profile Page</title>
+    <link rel="stylesheet" type="text/css" href="../css/layout.css"/>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+
+<body>
+<div class="topbar">
+    <a href="http://localhost:8080/CS5003Coursework2MountainsWebApplicationProject-1.0-SNAPSHOT/pages/dynamic/homePage.xhtml" class="logo-container">
+        <h:graphicImage library="images" name="Mountain website logo 2.png" styleClass="logo"/>
+        <span class="logo-text">Mountains</span>
+    </a>
+    <h:form styleClass="topbar-right">
+        <h:panelGroup rendered="#{empty loginBean.loggedInUser}">
+            <h:link outcome="/pages/dynamic/login.xhtml"
+                    styleClass="login-icon">
+                <h:graphicImage library="images"
+                                name="Login.png"
+                                styleClass="login-img"/>
+                <span class="login-text">log in</span>
+            </h:link>
+        </h:panelGroup>
+        <h:panelGroup rendered="#{not empty loginBean.loggedInUser}">
+            <h:outputText value="#{loginBean.loggedInUser.username}"
+                          styleClass ="login-text"/>
+            <h:commandLink value="Logout"
+                           action="#{loginBean.logout}"
+                           styleClass="logout-link"/>
+        </h:panelGroup>
+
+    </h:form>
+</div>
+
+<div class="layout">
+    <div class ="sidebar">
+        <h2>MENU</h2>
+        <a href ="../static/aboutUs.xhtml">AboutUs</a>
+        <a href ="../static/safetyGuide.xhtml">Safety Guide</a>
+        <a href="../dynamic/mountains.xhtml">view mountains</a>
+        <a href="../dynamic/myProfile.xhtml">My Profile</a>
+        <a href="../dynamic/homePage.xhtml">Home</a>
+        <a href="../dynamic/weather.xhtml/">weather</a>
+        <a href="../dynamic/bookmarks.xhtml">BookMarks</a>
+    </div>
+    <div class="content">
+        <div class="content-box">
+            <h1>My profile</h1>
+            <h:form>
+                <h:messages globalOnly="false"/>
+                <h:panelGroup rendered="#{not ProfileBean.editMode}">
+                    <h:panelGrid columns="2">
+                        <h:outputText value="First name:"/>
+                        <h:outputText value="#{ProfileBean.user.firstName}"/>
+
+                        <h:outputText value="last name:"/>
+                        <h:outputText value="#{ProfileBean.user.lastName}"/>
+
+                        <h:outputText value=" Username:"/>
+                        <h:outputText value="#{ProfileBean.user.username}"/>
+
+                        <h:outputText value="Email:"/>
+                        <h:outputText value="#{ProfileBean.user.email}"/>
+                    </h:panelGrid>
+                    <h:form>
+                        <h:commandButton value="EDIT Profile"
+                                         action="#{ProfileBean.startEdit}"/>
+                    </h:form>
+                </h:panelGroup>
+
+                <h:panelGroup rendered="#{ProfileBean.editMode}">
+                    <h2> Edit your details</h2>
+
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputText value="First name:"/>
+                            <h:inputText value="#{ProfileBean.editableUser.firstName}"/>
+
+                            <h:outputText value="Last name:"/>
+                            <h:inputText value="#{ProfileBean.editableUser.lastName}"/>
+
+
+                            <h:outputText value="Email:"/>
+                            <h:inputText value="#{ProfileBean.editableUser.email}"/>
+
+                        </h:panelGrid>
+                        <h:commandButton value="Apply Changes"
+                                         action="#{ProfileBean.applyChanges}"/>
+
+                        <h:commandButton value="Cancel"
+                                         action="#{ProfileBean.cancelEdit}"
+                                         immediate="true"/>
+
+                    </h:form>
+                </h:panelGroup>
+
+
+            </h:form>
+
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

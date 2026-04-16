@@ -3,8 +3,10 @@ package com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.dao.
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.dao.BaseTemplateDAO;
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.dao.MountainDAO;
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.entities.Mountain;
+import jakarta.enterprise.context.ApplicationScoped;
 
 import java.util.List;
+@ApplicationScoped
 
 public class MountainDAOImplementation extends BaseTemplateDAO implements MountainDAO {
 

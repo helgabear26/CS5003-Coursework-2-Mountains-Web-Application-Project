@@ -10,9 +10,10 @@ public interface AccommodationDAO {
 
     Accommodation getAccommodationByID(Integer id);
 
+
     List<Accommodation> getAllAccommodations();
 
-    List<Accommodation> getByMountainID(Integer mountainID);
+    List<Accommodation> getByMountainID(Integer mountainId);
 
     void updateAccommodation(Accommodation accommodation);
 

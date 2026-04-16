@@ -29,6 +29,9 @@ public class BookingBean implements Serializable {
     @Inject
     private LoginBean loginBean;
 
+    @Inject
+    private SelectionsBean selectionsBean;
+
     private Accommodation selectedAccommodation;
     private List<Booking> userBookings;
     private Booking selectedBooking;
@@ -41,24 +44,14 @@ public class BookingBean implements Serializable {
 
     @PostConstruct
     public void init() {
-        try {
-            FacesContext context = FacesContext.getCurrentInstance();
+        Users user = loginBean.getLoggedInUser();
 
-            if (context == null) {
-                return;
-            }
-
-            Users user = loginBean.getLoggedInUser();
-
-            if (user == null) {
-                returnTo("/pages/dynamic/login.xhtml");
-                return;
-            }
-
-            this.userBookings = bookingDAO.getBookingsByUser(user.getId());
-        } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, "Failed to load bookings", e);
+        if (user != null)
+        {
+            userBookings = bookingDAO.getBookingsByUser(user.getId());
         }
+
+        selectedAccommodation = selectionsBean.getSelectedAccommodation();
     }
 
     public void checkAvailability() {
@@ -67,6 +60,7 @@ public class BookingBean implements Serializable {
                 addMessage(FacesMessage.SEVERITY_ERROR, "Error", "Select accommodation and date");
                 return;
             }
+
 
             List<Booking> existing =
                     bookingDAO.getBookingsByAccommodationAndDate(selectedAccommodation.getId(), datesBooked);
@@ -88,12 +82,14 @@ public class BookingBean implements Serializable {
             Users user = loginBean.getLoggedInUser();
 
             if (user == null) {
-                returnTo("/pages/dynamic/login.xhtml");
-                return null;
+                return "/pages/dynamic/login.xhtml?faces-redirect=true";
+
             }
 
             if (selectedAccommodation == null || datesBooked == null) {
-                addMessage(FacesMessage.SEVERITY_ERROR, "Error", "Empty or invalid fields");
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Empty or invalid fields"))
+                ;
                 return null;
             }
 
@@ -117,28 +113,33 @@ public class BookingBean implements Serializable {
 
             addMessage(FacesMessage.SEVERITY_INFO, "Success", "Booking successful");
 
-            return "/pages/booking/confirmation.xhtml?faces-redirect=true";
+            return "/pages/dynamic/myBooking.xhtml?faces-redirect=true";
         } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, "Booking failed", e);
+            e.printStackTrace();
             return null;
         }
     }
+    public void selectBookingtoEdit(Booking booking) {
+        this.selectedBooking = booking;
+    }
 
-    public void updateBooking(Booking booking) {
+    public void updateBooking() {
         try {
-            if (booking == null) {
-                return;
+            if (selectedBooking != null) {
+                bookingDAO.updateBooking(selectedBooking);
+
+                Users user = loginBean.getLoggedInUser();
+                if (user != null)
+                {
+                    userBookings=bookingDAO.getBookingsByUser(user.getId());
+                }
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Booking successful"));
+
             }
 
-            bookingDAO.updateBooking(booking);
-
-            Users user = loginBean.getLoggedInUser();
-
-            if (user != null) {
-                this.userBookings = bookingDAO.getBookingsByUser(user.getId());
-            }
         } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, "Update failed", e);
+            e.printStackTrace();
         }
     }
 
@@ -151,6 +152,8 @@ public class BookingBean implements Serializable {
             if (user != null) {
                 this.userBookings = bookingDAO.getBookingsByUser(user.getId());
             }
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Deleted", "Booking successful removed"));
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, "Failed to delete", e);
         }

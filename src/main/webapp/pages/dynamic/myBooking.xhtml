@@ -3,12 +3,14 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f ="http://xmlns.jcp.org/jsf/core"
       xmlns="http://www.w3.org/1999/xhtml">
-<head>
+
+<h:head>
     <meta charset="UTF-8"/>
-    <title>Simple Facelet Page</title>
+    <title>Booking Page</title>
     <link rel="stylesheet" type="text/css" href="../css/layout.css"/>
     <h:outputStylesheet library="css" name="style.css"/>
-</head>
+</h:head>
+
 <body>
 <div class="topbar">
     <a href="http://localhost:8080/CS5003Coursework2MountainsWebApplicationProject-1.0-SNAPSHOT/pages/dynamic/homePage.xhtml" class="logo-container">
@@ -36,6 +38,7 @@
     </h:form>
 </div>
 
+
 <div class="layout">
     <div class ="sidebar">
         <h2>MENU</h2>
@@ -48,73 +51,85 @@
         <a href="../dynamic/bookmarks.xhtml">BookMarks</a>
     </div>
     <div class="content">
-        <div class="content-box">
-            <h1>select Activities</h1>
-            <h2>Mountain: #{SelectionsBean.selectedMountain.name}</h2>
-            <h3>Accommodation: #{SelectionsBean.selectedAccommodation.name}</h3>
+        <div class ="content-box">
+            <h1>My Bookings</h1>
             <h:form>
-                <h:dataTable value="#{mountainActivitiesBean.activities}" var="a">
+                <h:messages  globalOnly="true"/>
+                <h:dataTable value="#{bookingBean.userBookings}" var="B" border="1">
                     <h:column>
-                        <f:facet name="header">Activity Name</f:facet>
-                        #{a.activityName}
+                        <f:facet name="header">Booking ID</f:facet>
+                        #{B.id}
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">Category</f:facet>
-                        #{a.category}
+                        <f:facet name="header">Accommodation</f:facet>
+                        #{B.accommodationID.name}
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">Description</f:facet>
-                        #{a.description}
+                        <f:facet name="header">DATE</f:facet>
+                        #{B.datesBooked}
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">Season Start</f:facet>
-                        #{a.seasonStart}
+                        <f:facet name="header">Email</f:facet>
+                        #{B.email}
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">Season end</f:facet>
-                        #{a.seasonEnd}
+                        <f:facet name="header">Phone</f:facet>
+                        #{B.phoneNo}
                     </h:column>
+
                     <h:column>
-                        <f:facet name="header">Action</f:facet>
-                        <h:commandButton value="view Prices"
-                                         action="#{mountainActivitiesBean.selectActivity(a)}"/>
+                        <f:facet name="header">Actions</f:facet>
+                        <h:commandButton value="Edit"
+                                         action="#{bookingBean.selectBookingtoEdit(B)}"/>
+
+
+                        <h:commandButton  value="Delete"
+                                          action="#{bookingBean.deleteBooking(B.id)}"
+                                          onclick="return confirm('you are about to delete this booking');"/>
+
                     </h:column>
+
+
                 </h:dataTable>
-                <h:panelGroup rendered="#{not empty mountainActivitiesBean.activityPrices}">
-                    <h2>Activity prices</h2>
-                    <h:dataTable value="#{mountainActivitiesBean.activityPrices}" var="p">
-                        <h:column>
-                            <f:facet name="header">Type</f:facet>
-                            #{p.priceType}
-                        </h:column>
-
-                        <h:column>
-                            <f:facet name="header">Price</f:facet>
-                            #{p.priceAmount}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Currency</f:facet>
-                            #{p.currency}
-                        </h:column>
-
-
-                    </h:dataTable>
-                    <h:commandButton value="Continue your Booking"
-                                     action="#{mountainActivitiesBean.continueBooking}"/>
-                </h:panelGroup>
-
             </h:form>
+            <h:panelGroup id="editPanel" layout="block" rendered="#{not empty bookingBean.selectedBooking}">
+                <h2> Edit Booking</h2>
 
+                <h:form>
+                    <h:messages globalOnly="false"/>
+                    <h:panelGrid columns="2">
+                        <h:outputText value="Accommodation:"/>
+                        <h:outputText value="#{bookingBean.selectedBooking.accommodationID.name}"/>
 
+                        <h:outputText value="Date:"/>
+                        <h:inputText value="#{bookingBean.selectedBooking.datesBooked}">
+                            <f:convertDateTime pattern="yyyy-MM-dd" type="localDate"/>
+                        </h:inputText>
+
+                        <h:outputText value="Email:"/>
+                        <h:inputText value="#{bookingBean.selectedBooking.email}"/>
+
+                        <h:outputText value="Phone:"/>
+                        <h:inputText value="#{bookingBean.selectedBooking.phoneNo}"/>
+
+                    </h:panelGrid>
+                    <h:commandButton value="Update Booking"
+                                     action="#{bookingBean.updateBooking}"/>
+
+                </h:form>
+
+            </h:panelGroup>
         </div>
-
     </div>
 
 </div>
 
+
 </body>
+
+
 </html>

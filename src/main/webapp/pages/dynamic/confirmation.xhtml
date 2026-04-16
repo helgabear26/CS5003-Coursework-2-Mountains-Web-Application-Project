@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html
-        xmlns:h="http://xmlns.jcp.org/jsf/html"
-        xmlns:f ="http://xmlns.jcp.org/jsf/core"
-        xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f ="http://xmlns.jcp.org/jsf/core"
+      xmlns="http://www.w3.org/1999/xhtml">
 <h:head>
     <meta charset="UTF-8"/>
-    <title>Accommodation Booking</title>
+    <title> confirmations Page</title>
     <link rel="stylesheet" type="text/css" href="../css/layout.css"/>
     <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
@@ -35,9 +35,8 @@
 
     </h:form>
 </div>
-
 <div class="layout">
-    <div class="sidebar">
+    <div class ="sidebar">
         <h2>MENU</h2>
         <a href ="../static/aboutUs.xhtml">AboutUs</a>
         <a href ="../static/safetyGuide.xhtml">Safety Guide</a>
@@ -49,38 +48,35 @@
     </div>
     <div class="content">
         <div class="content-box">
-            <h1> Select Accommodation</h1>
-
-
-            <h:panelGroup rendered="#{not empty SelectionsBean.selectedMountain}">
-                <h2>Mountain: #{SelectionsBean.selectedMountain.name}</h2>
-            </h:panelGroup>
-
+            <h1>Confirm Booking</h1>
             <h:form>
-                <h:dataTable value="#{AccommodationsBeans.accommodations}" var ="a">
-                    <h:column>
-                        <f:facet name="header">Name</f:facet>
-                        #{a.name}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Description</f:facet>
-                        #{a.description}
-                    </h:column>
+                <h:messages globalOnly="true"/>
+                <h:panelGrid columns="2">
+                    <h:outputText value="Mountain:"/>
+                    <h:outputText value="#{SelectionsBean.selectedMountain.name}"/>
 
-                    <h:column>
-                        <f:facet name="header">Coordinates</f:facet>
-                        #{a.coordinates}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Action</f:facet>
-                        <h:commandButton value="select Accommodation"
-                                         action="#{AccommodationsBeans.selectAccommodation(a)}"/>
-                    </h:column>
-                </h:dataTable>
+                    <h:outputText value="Accommodation:"/>
+                    <h:outputText value="#{SelectionsBean.selectedAccommodation.name}"/>
 
+                    <h:outputText value="Activity:"/>
+                    <h:outputText value="#{SelectionsBean.selectedActivity.activityName}"/>
+
+                    <h:outputText value="Date:"/>
+                    <h:inputText value="#{bookingBean.datesBooked}">
+                        <f:convertDateTime type="localDate" pattern="yyyy-MM-dd"/>
+                    </h:inputText>
+
+                    <h:outputText value="Email:"/>
+                    <h:inputText value="#{bookingBean.email}"/>
+
+                    <h:outputText value="Phone:"/>
+                    <h:inputText value="#{bookingBean.phoneNo}"/>
+
+                </h:panelGrid>
+                <h:commandButton value="Create Booking"
+                                 action="#{bookingBean.createBooking}"/>
             </h:form>
         </div>
-
     </div>
 </div>
 </body>

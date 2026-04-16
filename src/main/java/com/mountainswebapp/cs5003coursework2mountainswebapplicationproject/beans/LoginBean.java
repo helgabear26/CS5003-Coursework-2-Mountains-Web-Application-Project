@@ -50,14 +50,22 @@ public class LoginBean implements Serializable {
         }
 
         loggedInUser = user;
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("loggedInUser", user);
+        username = null;
+        password = null;
         return "/pages/dynamic/homePage.xhtml?faces-redirect=true";
     }
 
     public String logout() {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         loggedInUser = null;
         username = null;
         password = null;
         return "/pages/dynamic/login.xhtml?faces-redirect=true";
+    }
+
+    public boolean isLoggedIn() {
+        return loggedInUser != null;
     }
 
     public Users getLoggedInUser() {

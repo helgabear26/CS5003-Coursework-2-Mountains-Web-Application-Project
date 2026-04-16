@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Sign up Page</title>
+    <link rel="stylesheet" type="text/css" href="../css/login.css"/>
+    <script type="text/javascript" src="../js/script.js"></script>
+</head>
+
+<body>
+<div class="content">
+    <div class="login-box">
+        <h1>sign up?</h1>
+        <div class="header-text">create a new account</div>
+
+        <h:form id="SignupForm">
+
+            <div class="input-box">
+                <h:inputText id="email"
+                             value="#{SignUpBean.email}"
+                             p:placeholder="Email"/>
+                <h:message for="email"/>
+            </div>
+
+            <div class="input-box">
+                <h:inputText id="firstname"
+                             value="#{SignUpBean.firstName}"
+                             p:placeholder="First name"/>
+            </div>
+
+            <div class="input-box">
+                <h:inputText id="lastname"
+                             value="#{SignUpBean.lastName}"
+                             p:placeholder="Last name"/>
+            </div>
+
+            <div class="input-box">
+                <h:inputText id="username"
+                             value="#{SignUpBean.username}"
+                             p:placeholder="Username"/>
+            </div>
+
+            <div class="input-box">
+                <h:inputSecret id="password"
+                               value="#{SignUpBean.password}"
+                               p:placeholder="Password"/>
+            </div>
+
+            <div class="input-box">
+                <h:inputSecret id="Confirmpassword"
+                               value="#{SignUpBean.confirmPassword}"
+                               p:placeholder="Confirm Password"/>
+            </div>
+
+            <h:messages globalOnly="true"/>
+
+            <h:commandButton value="Sign up"
+                             action="#{SignUpBean.register}"
+                             styleClass="button"/>
+
+        </h:form>
+    </div>
+</div>
+</body>
+</html>
