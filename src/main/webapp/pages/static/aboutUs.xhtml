@@ -19,12 +19,26 @@
             <h:graphicImage library="images" name="Mountain website logo 2.png" styleClass="logo"/>
             <span class="logo-text">Mountains</span>
         </a>
-        <a href="http://localhost:8080/CS5003Coursework2MountainsWebApplicationProject-1.0-SNAPSHOT/pages/dynamic/login.xhtml" class="login-icon">
-            <h:graphicImage library="images" name="Login.png" styleClass="login-img"/>
-            <span class="login-text">Log in</span>
-        </a>
-    </div>
+        <h:form styleClass="topbar-right">
+            <h:panelGroup rendered="#{empty loginBean.loggedInUser}">
+                <h:link outcome="/pages/dynamic/login.xhtml"
+                        styleClass="login-icon">
+                    <h:graphicImage library="images"
+                                    name="Login.png"
+                                    styleClass="login-img"/>
+                    <span class="login-text">log in</span>
+                </h:link>
+            </h:panelGroup>
+            <h:panelGroup rendered="#{not empty loginBean.loggedInUser}">
+                <h:outputText value="#{loginBean.loggedInUser.username}"
+                              styleClass ="login-text"/>
+                <h:commandLink value="Logout"
+                               action="#{loginBean.logout}"
+                               styleClass="logout-link"/>
+            </h:panelGroup>
 
+        </h:form>
+    </div>
     <div class="layout">
 
         <div class="sidebar">
@@ -32,9 +46,19 @@
             <a href="http://localhost:8080/CS5003Coursework2MountainsWebApplicationProject-1.0-SNAPSHOT/pages/dynamic/homePage.xhtml">Home</a>
             <a href="#" class="active">About Us</a>
             <a href="http://localhost:8080/CS5003Coursework2MountainsWebApplicationProject-1.0-SNAPSHOT/pages/static/safetyGuide.xhtml">Safety Guide</a>
-            <a href="../dynamic/mountains.xhtml">view mountains</a>
-            <a href="../dynamic/myProfile.xhtml">My Profile</a>
-            <a href="../dynamic/weather.xhtml/">weather</a>
+            <a href="../dynamic/mountains.xhtml">View mountains</a>
+            <h:form style="display:inline; margin:0;">
+                <h:commandLink value="My Profile"
+                               action="#{homeBean.viewProfile}"
+                               style="color:white; padding:12px 16px; display:block;"/>
+            </h:form>
+            <a href="../dynamic/weather.xhtml/">Weather</a>
+            <h:form style="display:inline; margin:0;">
+                <h:commandLink value="My Bookings"
+                               action="#{homeBean.viewBookings}"
+                               style="color:white; padding:12px 16px; display:block;"/>
+            </h:form>
+
             <a href="../dynamic/bookmarks.xhtml">BookMarks</a>
         </div>
 

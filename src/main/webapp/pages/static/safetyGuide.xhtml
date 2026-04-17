@@ -50,9 +50,20 @@
             <a href="http://localhost:8080/CS5003Coursework2MountainsWebApplicationProject-1.0-SNAPSHOT/pages/dynamic/homePage.xhtml">Home</a>
             <a href="http://localhost:8080/CS5003Coursework2MountainsWebApplicationProject-1.0-SNAPSHOT/pages/static/aboutUs.xhtml">About Us</a>
             <a href="#" class="active">Safety Guide</a>
-            <a href="../dynamic/mountains.xhtml">view mountains</a>
-            <a href="../dynamic/myProfile.xhtml">My Profile</a>
-            <a href="../dynamic/weather.xhtml/">weather</a>
+            <a href="../dynamic/mountains.xhtml">View mountains</a>
+
+            <h:form style="display:inline; margin:0;">
+                <h:commandLink value="My Profile"
+                               action="#{homeBean.viewProfile}"
+                               style="color:white; padding:12px 16px; display:block;"/>
+            </h:form>
+
+            <a href="../dynamic/weather.xhtml/">Weather</a>
+            <h:form style="display:inline; margin:0;">
+                <h:commandLink value="My Bookings"
+                               action="#{homeBean.viewBookings}"
+                               style="color:white; padding:12px 16px; display:block;"/>
+            </h:form>
             <a href="../dynamic/bookmarks.xhtml">BookMarks</a>
         </div>
 
