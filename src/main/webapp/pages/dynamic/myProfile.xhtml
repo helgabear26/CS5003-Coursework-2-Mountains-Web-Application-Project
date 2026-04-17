@@ -30,7 +30,7 @@
         <h:panelGroup rendered="#{not empty loginBean.loggedInUser}">
             <h:outputText value="#{loginBean.loggedInUser.username}"
                           styleClass ="login-text"/>
-            <h:commandLink value="Logout"
+            <h:commandLink value="Log out?"
                            action="#{loginBean.logout}"
                            styleClass="logout-link"/>
         </h:panelGroup>
@@ -40,14 +40,14 @@
 
 <div class="layout">
     <div class ="sidebar">
-        <h2>MENU</h2>
-        <a href ="../static/aboutUs.xhtml">AboutUs</a>
+        <h2>Menu</h2>
+        <a href ="../dynamic/homePage.xhtml">Home</a>
+        <a href ="../static/aboutUs.xhtml">About Us</a>
         <a href ="../static/safetyGuide.xhtml">Safety Guide</a>
-        <a href="../dynamic/mountains.xhtml">view mountains</a>
+        <a href="../dynamic/mountains.xhtml">View Mountains</a>
         <a href="../dynamic/myProfile.xhtml">My Profile</a>
-        <a href="../dynamic/homePage.xhtml">Home</a>
-        <a href="../dynamic/weather.xhtml/">weather</a>
-        <a href="../dynamic/bookmarks.xhtml">BookMarks</a>
+        <a href="../dynamic/weather.xhtml/">Weather</a>
+        <a href="../dynamic/bookmarks.xhtml">Bookmarks</a>
     </div>
     <div class="content">
         <div class="content-box">
@@ -56,10 +56,10 @@
                 <h:messages globalOnly="false"/>
                 <h:panelGroup rendered="#{not ProfileBean.editMode}">
                     <h:panelGrid columns="2">
-                        <h:outputText value="First name:"/>
+                        <h:outputText value="First Name:"/>
                         <h:outputText value="#{ProfileBean.user.firstName}"/>
 
-                        <h:outputText value="last name:"/>
+                        <h:outputText value="Last Name:"/>
                         <h:outputText value="#{ProfileBean.user.lastName}"/>
 
                         <h:outputText value=" Username:"/>
@@ -79,10 +79,10 @@
 
                     <h:form>
                         <h:panelGrid columns="2">
-                            <h:outputText value="First name:"/>
+                            <h:outputText value="First Name:"/>
                             <h:inputText value="#{ProfileBean.editableUser.firstName}"/>
 
-                            <h:outputText value="Last name:"/>
+                            <h:outputText value="Last Name:"/>
                             <h:inputText value="#{ProfileBean.editableUser.lastName}"/>
 
 

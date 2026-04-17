@@ -5,7 +5,7 @@
       xmlns="http://www.w3.org/1999/xhtml">
 <h:head>
     <meta charset="UTF-8"/>
-    <title>mountains Page</title>
+    <title>Mountains Page</title>
     <h:outputStylesheet library="css" name="style.css"/>
     <link rel="stylesheet" type="text/css" href="../css/layout.css"/>
 </h:head>
@@ -20,7 +20,7 @@
         <h:panelGroup rendered="#{empty loginBean.loggedInUser}">
             <h:link outcome="/pages/dynamic/login.xhtml" styleClass="login-icon">
                 <h:graphicImage library="images" name="Login.png" styleClass="login-img"/>
-                <span class="login-text">log in</span>
+                <span class="login-text">Log in</span>
             </h:link>
         </h:panelGroup>
         <h:panelGroup rendered="#{not empty loginBean.loggedInUser}">
@@ -31,17 +31,18 @@
 </div>
 <div class="layout">
     <div class="sidebar">
-        <a href ="../static/aboutUs.xhtml">AboutUs</a>
-        <a href ="../static/safetyGuide.xhtml">Safety Guide</a>
-        <a href="../dynamic/mountains.xhtml">view mountains</a>
-        <a href="../dynamic/myProfile.xhtml">My Profile</a>
+        <h2>Menu</h2>
         <a href="../dynamic/homePage.xhtml">Home</a>
-        <a href="../dynamic/weather.xhtml/">weather</a>
-        <a href="../dynamic/bookmarks.xhtml">BookMarks</a>
+        <a href ="../static/aboutUs.xhtml">About Us</a>
+        <a href ="../static/safetyGuide.xhtml">Safety Guide</a>
+        <a href="#" class="active">View Mountains</a>
+        <a href="../dynamic/myProfile.xhtml">My Profile</a>
+        <a href="../dynamic/weather.xhtml/">Weather</a>
+        <a href="../dynamic/bookmarks.xhtml">Bookmarks</a>
     </div>
     <div class="content">
         <div class="content-box">
-            <h1>Mountain informations</h1> <h:form>
+            <h1>Mountains Information</h1> <h:form>
             <h:dataTable value="#{mountainListBean.mountains}" var="m">
                 <h:column>
                     <f:facet name ="header">Name</f:facet>
