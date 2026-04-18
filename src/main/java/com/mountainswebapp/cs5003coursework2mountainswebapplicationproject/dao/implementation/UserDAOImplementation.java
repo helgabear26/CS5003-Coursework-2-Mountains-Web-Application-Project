@@ -22,20 +22,6 @@ public class UserDAOImplementation extends BaseTemplateDAO implements UsersDAO {
     }
 
     @Override
-    public Users authenticateUser(String username, String password) {
-        return executeRead(em -> {
-            List<Users> users = em.createQuery(
-                            "SELECT u FROM Users u WHERE u.username = :username AND u.password = :password",
-                            Users.class)
-                    .setParameter("username", username)
-                    .setParameter("password", password)
-                    .getResultList();
-
-            return users.isEmpty() ? null : users.get(0);
-        });
-    }
-
-    @Override
     public Users getUserByUsername(String username) {
         return executeRead(em -> {
             List<Users> users = em.createQuery(

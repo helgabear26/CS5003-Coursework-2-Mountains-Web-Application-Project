@@ -7,6 +7,7 @@ import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.Serializable;
 import java.util.regex.Pattern;
@@ -126,12 +127,14 @@ public class SignUpBean implements Serializable {
             return null;
         }
 
+        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+
         Users user = new Users();
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setEmail(email);
         user.setUsername(username);
-        user.setPassword(password);
+        user.setPassword(hashedPassword);
 
         usersDAO.createUser(user);
 

@@ -9,8 +9,6 @@ public interface UsersDAO {
 
     Users getUserByID(Integer id);
 
-    Users authenticateUser(String username, String password);
-
     Users getUserByUsername(String username);
 
     List<Users> getAllUsers();

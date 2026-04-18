@@ -6,6 +6,7 @@ import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import java.io.Serializable;
+import org.mindrot.jbcrypt.BCrypt;
 
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.entities.Users;
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.dao.UsersDAO;
@@ -41,9 +42,9 @@ public class LoginBean implements Serializable {
             return null;
         }
 
-        Users user = usersDAO.authenticateUser(username, password);
+        Users user = usersDAO.getUserByUsername(username);
 
-        if (user == null) {
+        if (user == null || !BCrypt.checkpw(password, user.getPassword())) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Incorrect username and/or password."));
             return null;
@@ -53,6 +54,7 @@ public class LoginBean implements Serializable {
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("loggedInUser", user);
         username = null;
         password = null;
+
         return "/pages/dynamic/homePage.xhtml?faces-redirect=true";
     }
 
