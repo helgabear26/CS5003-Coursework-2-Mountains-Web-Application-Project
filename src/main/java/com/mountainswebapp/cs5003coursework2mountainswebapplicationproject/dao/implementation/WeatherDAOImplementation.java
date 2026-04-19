@@ -8,11 +8,14 @@ import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.model
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.parser.WeatherParser;
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.utils.APIKeyConfigManager;
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.utils.CoordinateParser;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+
 
 import java.util.*;
 import java.util.logging.Logger;
 
+@ApplicationScoped
 public class WeatherDAOImplementation implements WeatherDAO {
 
     private static final Logger LOGGER = Logger.getLogger(WeatherDAOImplementation.class.getName());

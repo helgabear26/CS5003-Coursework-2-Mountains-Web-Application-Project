@@ -3,7 +3,9 @@ package com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.cach
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.model.WeatherData;
 
 import java.util.concurrent.ConcurrentHashMap;
+import jakarta.enterprise.context.ApplicationScoped;
 
+@ApplicationScoped
 public class WeatherCache {
 
     private static final long  TTL_MS = 2 * 60 * 1000;
