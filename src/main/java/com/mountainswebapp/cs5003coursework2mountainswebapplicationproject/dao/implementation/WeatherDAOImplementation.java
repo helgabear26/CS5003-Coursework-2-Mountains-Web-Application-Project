@@ -1,51 +1,85 @@
 package com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.dao.implementation;
 
+import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.cache.WeatherCache;
+import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.client.WeatherClient;
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.dao.WeatherDAO;
+import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.entities.Mountain;
+import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.model.WeatherData;
+import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.parser.WeatherParser;
+import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.utils.APIKeyConfigManager;
+import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.utils.CoordinateParser;
+import jakarta.inject.Inject;
 
-import java.util.Map;
+import java.util.*;
+import java.util.logging.Logger;
 
 public class WeatherDAOImplementation implements WeatherDAO {
 
-    private static final String API_KEY = "";
-    private static final String API_URL = "";
+    private static final Logger LOGGER = Logger.getLogger(WeatherDAOImplementation.class.getName());
+
+    @Inject
+    private  WeatherClient client;
+
+    @Inject
+    private WeatherCache cache;
 
     @Override
-    public Map<String, Object> getWeatherByCoordinates(double latitude, double longitude) {
-        return Map.of();
+    public Optional<WeatherData> getWeather(double lat, double lon) {
+        try {
+            String json = client.fetch(lat, lon);
+            return Optional.of(WeatherParser.parse(json));
+
+        } catch (Exception e) {
+            LOGGER.warning("Weather fetch failed: " + e.getMessage());
+            return Optional.empty();
+        }
     }
 
     @Override
-    public double getTemperature(Map<String, Object> weatherData) {
-        return 0;
+    public Optional<WeatherData> getWeather(Mountain mountain) {
+        return CoordinateParser.parse(mountain.getCoordinates())
+                .flatMap(coords -> getWeather(coords[0], coords[1]));
     }
 
     @Override
-    public String getWeatherCondition(Map<String, Object> weatherData) {
-        return "";
-    }
+    public Map<Integer, WeatherData> getWeatherForMountains(List<Mountain> mountains) {
 
-    @Override
-    public double getWindSpeed(Map<String, Object> weatherData) {
-        return 0;
-    }
+        Map<Integer, WeatherData> result = new HashMap<>();
 
-    @Override
-    public double getHumididty(Map<String, Object> weatherData) {
-        return 0;
-    }
+        for (Mountain mountain : mountains) {
+            Integer id = mountain.getId();
 
-    @Override
-    public double getUVIndex(Map<String, Object> weatherData) {
-        return 0;
-    }
+            try {
+                WeatherData cached = cache.get(id);
+                if (cached != null) {
+                    result.put(id, cached);
+                    continue;
+                }
 
-    @Override
-    public boolean hasStormWarning(Map<String, Object> weatherData) {
-        return false;
-    }
+                Optional<double[]> coordsOpt = CoordinateParser.parse(mountain.getCoordinates());
 
-    @Override
-    public boolean hasAvalancheRisk(double temperature, double windSpeed) {
-        return false;
+                if (coordsOpt.isEmpty()) {
+                    LOGGER.warning("Invalid coordinates for " + mountain.getName());
+                    continue;
+                }
+
+                double[] coords = coordsOpt.get();
+
+                Optional<WeatherData> weather = getWeather(coords[0], coords[1]);
+
+                weather.ifPresent(data -> {
+                    cache.put(id, data);
+                    result.put(id, data);
+                });
+
+            } catch (Exception e) {
+                LOGGER.severe("Error processing " + mountain.getName() + ": " + e.getMessage());
+            }
+        }
+
+        return result;
     }
 }
+
+
+

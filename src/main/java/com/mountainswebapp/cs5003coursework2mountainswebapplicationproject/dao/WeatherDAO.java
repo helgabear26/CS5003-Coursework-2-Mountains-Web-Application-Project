@@ -1,17 +1,17 @@
 package com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.dao;
 
+import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.entities.Mountain;
+import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.model.WeatherData;
+
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public interface WeatherDAO {
 
-    Map<String, Object> getWeatherByCoordinates(double latitude, double longitude);
+    Optional<WeatherData> getWeather(double latitude, double longitude);
 
-    double getTemperature(Map<String, Object> weatherData);
-    String getWeatherCondition(Map<String, Object> weatherData);
-    double getWindSpeed(Map<String, Object> weatherData);
-    double getHumididty(Map<String, Object> weatherData);
-    double getUVIndex(Map<String, Object> weatherData);
+    Optional<WeatherData> getWeather(Mountain mountain);
 
-    boolean hasStormWarning(Map<String, Object> weatherData);
-    boolean hasAvalancheRisk(double temperature, double windSpeed);
+    Map<Integer, WeatherData> getWeatherForMountains(List<Mountain> mountains);
 }
