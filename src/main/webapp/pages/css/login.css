@@ -1,3 +1,4 @@
+/* Page background and general styling */
 body {
     background: url("../background images/Mountain2.jpg") center center / cover no-repeat;
     margin: 0;
@@ -7,7 +8,7 @@ body {
     color: white;
 }
 
-/* Top navbar */
+/* Top navigation bar */
 .top-navbar {
     display: flex;
     align-items: center;
@@ -18,25 +19,28 @@ body {
     box-sizing: border-box;
 }
 
+/* Logo container (image + text alignment) */
 .logo-container {
     display: flex;
     align-items: center;
     text-decoration: none;
 }
 
+/* Logo image */
 .logo {
     width: 70px;
     height: auto;
     margin-right: 14px;
 }
 
+/* Logo text */
 .logo-text {
     color: white;
     font-size: 28px;
     font-weight: bold;
 }
 
-/* Main content area */
+/* Main content area (centers login form) */
 .content {
     min-height: calc(100vh - 94px);
     display: flex;
@@ -47,7 +51,7 @@ body {
     background: transparent;
 }
 
-/* Login box */
+/* Login box container */
 .login-box {
     background: rgba(31, 59, 92, 0.45);
     backdrop-filter: blur(12px);
@@ -60,6 +64,7 @@ body {
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
 }
 
+/* Reusable content box styling */
 .content-box {
     background-color: rgba(167, 199, 231, 0.9);
     padding: 20px;
@@ -68,7 +73,7 @@ body {
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-/* Headings */
+/* Heading styles */
 h1 {
     margin-top: 0;
     margin-bottom: 10px;
@@ -77,6 +82,7 @@ h1 {
     color: white;
 }
 
+/* Subheading text */
 .header-text {
     font-weight: normal;
     font-style: italic;
@@ -84,12 +90,13 @@ h1 {
     color: #a7c7e7;
 }
 
-/* Form layout */
+/* Form group spacing */
 .form-group {
     width: 100%;
     margin-bottom: 8px;
 }
 
+/* Input field container */
 .input-box {
     width: 100%;
     margin: 10px 0 15px 0;
@@ -97,7 +104,7 @@ h1 {
     box-sizing: border-box;
 }
 
-/* Inputs */
+/* Input field styling */
 .input-box input {
     width: 100%;
     padding: 15px;
@@ -110,11 +117,12 @@ h1 {
     font-size: 16px;
 }
 
+/* Placeholder text styling */
 .input-box input::placeholder {
     color: rgba(255,255,255,0.7);
 }
 
-/* Button */
+/* Button styling */
 .button {
     width: 100%;
     padding: 15px;
@@ -130,11 +138,12 @@ h1 {
     transition: 0.3s;
 }
 
+/* Button hover effect */
 .button:hover {
     background: #2f6690;
 }
 
-/* Password icon */
+/* Password visibility toggle icon */
 .password-wrapper {
     position: relative;
 }
@@ -147,11 +156,12 @@ h1 {
     cursor: pointer;
 }
 
-/* Validation messages */
+/* Input spacing for validation */
 .input-field {
     margin-bottom: 0;
 }
 
+/* Error message styling for individual fields */
 .error-message {
     color: darkred;
     display: block;
@@ -161,6 +171,7 @@ h1 {
     font-size: 14px;
 }
 
+/* General error messages (top of form) */
 .general-error {
     color: darkred;
     text-align: center;
@@ -173,22 +184,30 @@ h1 {
     text-align: center;
 }
 
-/* Bottom text */
+/* Bottom text (e.g. sign up link section) */
 h3 {
     color: white;
 }
 
-/* FIX purple links */
+/* Link styling (override default browser colours) */
 a {
     color: #a7c7e7;
     text-decoration: none;
 }
 
+/* Prevent visited links turning purple */
 a:visited {
     color: #a7c7e7;
 }
 
+/* Link hover effect */
 a:hover {
     text-decoration: none;
     color: #cfe3ff;
+}
+
+/* Highlight input fields with errors */
+.input-box input.input-error {
+    border: 2px solid #ff4d4d !important;
+    box-shadow: 0 0 8px rgba(255, 77, 77, 0.7);
 }

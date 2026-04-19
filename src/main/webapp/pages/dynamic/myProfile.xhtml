@@ -13,7 +13,7 @@
 
 <body>
 <div class="topbar">
-    <a href="http://localhost:8080/CS5003Coursework2MountainsWebApplicationProject-1.0-SNAPSHOT/pages/dynamic/homePage.xhtml" class="logo-container">
+    <a href="../dynamic/homePage.xhtml" class="logo-container">
         <h:graphicImage library="images" name="Mountain website logo 2.png" styleClass="logo"/>
         <span class="logo-text">Mountains</span>
     </a>
@@ -40,13 +40,25 @@
 
 <div class="layout">
     <div class ="sidebar">
-        <h2>MENU</h2>
-        <a href ="../static/aboutUs.xhtml">AboutUs</a>
-        <a href ="../static/safetyGuide.xhtml">Safety Guide</a>
-        <a href="../dynamic/mountains.xhtml">view mountains</a>
-        <a href="../dynamic/myProfile.xhtml">My Profile</a>
+        <h2>Menu</h2>
         <a href="../dynamic/homePage.xhtml">Home</a>
-        <a href="../dynamic/weather.xhtml/">weather</a>
+        <a href="../static/aboutUs.xhtml">About Us</a>
+        <a href="../static/safetyGuide.xhtml">Safety Guide</a>
+        <a href="../dynamic/mountains.xhtml">View mountains</a>
+
+
+        <h:form style="display:inline; margin:0;">
+            <h:commandLink value="My Profile"
+                           action="#{homeBean.viewProfile}"
+                           style="color:white; padding:12px 16px; display:block;"/>
+        </h:form>
+
+        <a href="../dynamic/weather.xhtml/">Weather</a>
+        <h:form style="display:inline; margin:0;">
+            <h:commandLink value="My Bookings"
+                           action="#{homeBean.viewBookings}"
+                           style="color:white; padding:12px 16px; display:block;"/>
+        </h:form>
         <a href="../dynamic/bookmarks.xhtml">BookMarks</a>
     </div>
     <div class="content">
@@ -67,6 +79,8 @@
 
                         <h:outputText value="Email:"/>
                         <h:outputText value="#{ProfileBean.user.email}"/>
+
+
                     </h:panelGrid>
                     <h:form>
                         <h:commandButton value="EDIT Profile"
@@ -88,6 +102,10 @@
 
                             <h:outputText value="Email:"/>
                             <h:inputText value="#{ProfileBean.editableUser.email}"/>
+
+                            <h:outputText value="Username:"/>
+                            <h:inputText value="#{ProfileBean.editableUser.username}"/>
+
 
                         </h:panelGrid>
                         <h:commandButton value="Apply Changes"

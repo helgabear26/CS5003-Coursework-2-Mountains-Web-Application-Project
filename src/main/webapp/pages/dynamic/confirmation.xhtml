@@ -3,31 +3,58 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f ="http://xmlns.jcp.org/jsf/core"
       xmlns="http://www.w3.org/1999/xhtml">
+
 <h:head>
+    <!-- Basic page setup -->
     <meta charset="UTF-8"/>
     <title> confirmations Page</title>
+
+    <!-- Linking layout stylesheet -->
     <link rel="stylesheet" type="text/css" href="../css/layout.css"/>
+
+    <!-- Linking global stylesheet -->
     <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
+
 <body>
+
+<!-- Top navigation bar -->
 <div class="topbar">
-    <a href="http://localhost:8080/CS5003Coursework2MountainsWebApplicationProject-1.0-SNAPSHOT/pages/dynamic/homePage.xhtml" class="logo-container">
+    <a href="../dynamic/homePage.xhtml" class="logo-container">
+
+        <!-- Website logo -->
         <h:graphicImage library="images" name="Mountain website logo 2.png" styleClass="logo"/>
+
+        <!-- Website name -->
         <span class="logo-text">Mountains</span>
     </a>
+
+    <!-- Login / user section -->
     <h:form styleClass="topbar-right">
+
+        <!-- Shown when user is not logged in -->
         <h:panelGroup rendered="#{empty loginBean.loggedInUser}">
             <h:link outcome="/pages/dynamic/login.xhtml"
                     styleClass="login-icon">
+
+                <!-- Login icon -->
                 <h:graphicImage library="images"
                                 name="Login.png"
                                 styleClass="login-img"/>
+
+                <!-- Login text -->
                 <span class="login-text">log in</span>
             </h:link>
         </h:panelGroup>
+
+        <!-- Shown when user is logged in -->
         <h:panelGroup rendered="#{not empty loginBean.loggedInUser}">
+
+            <!-- Display username -->
             <h:outputText value="#{loginBean.loggedInUser.username}"
                           styleClass ="login-text"/>
+
+            <!-- Logout button -->
             <h:commandLink value="Logout"
                            action="#{loginBean.logout}"
                            styleClass="logout-link"/>
@@ -35,49 +62,91 @@
 
     </h:form>
 </div>
+
+<!-- Main layout container -->
 <div class="layout">
+
+    <!-- Sidebar navigation -->
     <div class ="sidebar">
-        <h2>MENU</h2>
-        <a href ="../static/aboutUs.xhtml">AboutUs</a>
-        <a href ="../static/safetyGuide.xhtml">Safety Guide</a>
-        <a href="../dynamic/mountains.xhtml">view mountains</a>
-        <a href="../dynamic/myProfile.xhtml">My Profile</a>
-        <a href="../dynamic/homePage.xhtml">Home</a>
-        <a href="../dynamic/weather.xhtml/">weather</a>
+        <h2>Menu</h2>
+
+        <a href="http://localhost:8080/CS5003Coursework2MountainsWebApplicationProject-1.0-SNAPSHOT/pages/dynamic/homePage.xhtml">Home</a>
+        <a href="http://localhost:8080/CS5003Coursework2MountainsWebApplicationProject-1.0-SNAPSHOT/pages/static/aboutUs.xhtml">About Us</a>
+        <a href="../static/safetyGuide.xhtml">Safety Guide</a>
+        <a href="../dynamic/mountains.xhtml">View mountains</a>
+
+        <!-- Profile navigation -->
+        <h:form style="display:inline; margin:0;">
+            <h:commandLink value="My Profile"
+                           action="#{homeBean.viewProfile}"
+                           style="color:white; padding:12px 16px; display:block;"/>
+        </h:form>
+
+        <a href="../dynamic/weather.xhtml/">Weather</a>
+
+        <!-- Bookings navigation -->
+        <h:form style="display:inline; margin:0;">
+            <h:commandLink value="My Bookings"
+                           action="#{homeBean.viewBookings}"
+                           style="color:white; padding:12px 16px; display:block;"/>
+        </h:form>
+
         <a href="../dynamic/bookmarks.xhtml">BookMarks</a>
     </div>
+
+    <!-- Main content section -->
     <div class="content">
         <div class="content-box">
+
+            <!-- Page heading -->
             <h1>Confirm Booking</h1>
+
+            <!-- Booking confirmation form -->
             <h:form>
+
+                <!-- Displays messages related to booking -->
                 <h:messages globalOnly="true"/>
+
+                <!-- Grid layout showing booking details -->
                 <h:panelGrid columns="2">
+
+                    <!-- Selected mountain -->
                     <h:outputText value="Mountain:"/>
                     <h:outputText value="#{SelectionsBean.selectedMountain.name}"/>
 
+                    <!-- Selected accommodation -->
                     <h:outputText value="Accommodation:"/>
                     <h:outputText value="#{SelectionsBean.selectedAccommodation.name}"/>
 
+                    <!-- Selected activity -->
                     <h:outputText value="Activity:"/>
                     <h:outputText value="#{SelectionsBean.selectedActivity.activityName}"/>
 
+                    <!-- Date input -->
                     <h:outputText value="Date:"/>
                     <h:inputText value="#{bookingBean.datesBooked}">
                         <f:convertDateTime type="localDate" pattern="yyyy-MM-dd"/>
                     </h:inputText>
 
+                    <!-- Email input -->
                     <h:outputText value="Email:"/>
                     <h:inputText value="#{bookingBean.email}"/>
 
+                    <!-- Phone input -->
                     <h:outputText value="Phone:"/>
                     <h:inputText value="#{bookingBean.phoneNo}"/>
 
                 </h:panelGrid>
+
+                <!-- Button to create booking -->
                 <h:commandButton value="Create Booking"
                                  action="#{bookingBean.createBooking}"/>
+
             </h:form>
+
         </div>
     </div>
 </div>
+
 </body>
 </html>

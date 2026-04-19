@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
+
 <h:head>
+    <!-- Basic page setup -->
     <meta charset="UTF-8"/>
     <title>Safety Guide</title>
+
+    <!-- Linking global stylesheet -->
     <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
 
@@ -12,27 +16,46 @@
                font-family: Arial, sans-serif;
                margin: 0;">
 
+    <!-- Linking JavaScript file -->
     <h:outputScript library="js" name="script.js"/>
 
-    <!-- TOP BAR -->
+    <!-- Top navigation bar -->
     <div class="topbar">
-        <a href="http://localhost:8080/CS5003Coursework2MountainsWebApplicationProject-1.0-SNAPSHOT/pages/dynamic/homePage.xhtml" class="logo-container">
+        <a href="../dynamic/homePage.xhtml" class="logo-container">
+
+            <!-- Website logo -->
             <h:graphicImage library="images" name="Mountain website logo 2.png" styleClass="logo"/>
+
+            <!-- Website name -->
             <span class="logo-text">Mountains</span>
         </a>
+
+        <!-- Login / user section -->
         <h:form styleClass="topbar-right">
+
+            <!-- Shown when user is not logged in -->
             <h:panelGroup rendered="#{empty loginBean.loggedInUser}">
                 <h:link outcome="/pages/dynamic/login.xhtml"
                         styleClass="login-icon">
+
+                    <!-- Login icon -->
                     <h:graphicImage library="images"
                                     name="Login.png"
                                     styleClass="login-img"/>
+
+                    <!-- Login text -->
                     <span class="login-text">log in</span>
                 </h:link>
             </h:panelGroup>
+
+            <!-- Shown when user is logged in -->
             <h:panelGroup rendered="#{not empty loginBean.loggedInUser}">
+
+                <!-- Display username -->
                 <h:outputText value="#{loginBean.loggedInUser.username}"
                               styleClass ="login-text"/>
+
+                <!-- Logout button -->
                 <h:commandLink value="Logout"
                                action="#{loginBean.logout}"
                                styleClass="logout-link"/>
@@ -41,24 +64,41 @@
         </h:form>
     </div>
 
-    <!-- LAYOUT -->
+    <!-- Main layout container -->
     <div class="layout">
 
-        <!-- SIDEBAR -->
+        <!-- Sidebar navigation -->
         <div class="sidebar">
             <h2>Menu</h2>
-            <a href="http://localhost:8080/CS5003Coursework2MountainsWebApplicationProject-1.0-SNAPSHOT/pages/dynamic/homePage.xhtml">Home</a>
-            <a href="http://localhost:8080/CS5003Coursework2MountainsWebApplicationProject-1.0-SNAPSHOT/pages/static/aboutUs.xhtml">About Us</a>
+
+            <a href="../dynamic/homePage.xhtml">Home</a>
+            <a href="../static/aboutUs.xhtml">About Us</a>
             <a href="#" class="active">Safety Guide</a>
-            <a href="../dynamic/mountains.xhtml">view mountains</a>
-            <a href="../dynamic/myProfile.xhtml">My Profile</a>
-            <a href="../dynamic/weather.xhtml/">weather</a>
+            <a href="../dynamic/mountains.xhtml">View mountains</a>
+
+            <!-- Profile navigation -->
+            <h:form style="display:inline; margin:0;">
+                <h:commandLink value="My Profile"
+                               action="#{homeBean.viewProfile}"
+                               style="color:white; padding:12px 16px; display:block;"/>
+            </h:form>
+
+            <a href="../dynamic/weather.xhtml/">Weather</a>
+
+            <!-- Bookings navigation -->
+            <h:form style="display:inline; margin:0;">
+                <h:commandLink value="My Bookings"
+                               action="#{homeBean.viewBookings}"
+                               style="color:white; padding:12px 16px; display:block;"/>
+            </h:form>
+
             <a href="../dynamic/bookmarks.xhtml">BookMarks</a>
         </div>
 
-        <!-- CONTENT -->
+        <!-- Main content section -->
         <div class="content">
 
+            <!-- Safety guide introduction -->
             <div class="content-box">
                 <h1>Safety Guide</h1>
                 <p>
@@ -68,6 +108,7 @@
                 </p>
             </div>
 
+            <!-- Preparation before trip -->
             <div class="content-box">
                 <h2>Before Your Trip</h2>
                 <ul>
@@ -79,6 +120,7 @@
                 </ul>
             </div>
 
+            <!-- Safety during activities -->
             <div class="content-box">
                 <h2>During Activities</h2>
                 <ul>
@@ -92,6 +134,7 @@
                 </ul>
             </div>
 
+            <!-- Activity-specific safety rules -->
             <div class="content-box">
                 <h2>Activity-Specific Safety</h2>
                 <ul>
@@ -102,6 +145,7 @@
                 </ul>
             </div>
 
+            <!-- Emergency guidance -->
             <div class="content-box">
                 <h2>Emergency Advice</h2>
                 <ul>
@@ -112,6 +156,7 @@
                 </ul>
             </div>
 
+            <!-- Company commitment -->
             <div class="content-box">
                 <h2>Our Commitment</h2>
                 <p>

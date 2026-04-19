@@ -1,3 +1,4 @@
+/* Page background and general styling */
 body {
     background: url("../background images/Mountain2.jpg") center center / cover no-repeat;
     margin: 0;
@@ -6,13 +7,13 @@ body {
     color: midnightblue;
 }
 
-/* Links */
+/* Default link styling */
 a {
     color: white;
     text-decoration: none;
 }
 
-/* Navbar layout */
+/* Top navigation bar layout */
 .top-navbar {
     display: flex;
     justify-content: space-between;
@@ -25,31 +26,34 @@ a {
     box-sizing: border-box;
 }
 
-/* Logo container */
+/* Logo container (image + text) */
 .logo-container {
     display: flex;
     align-items: center;
     text-decoration: none;
 }
 
+/* Logo image styling */
 .logo {
     width: 60px;
     height: auto;
     margin-right: 10px;
 }
 
+/* Logo text styling */
 .logo-text {
     color: white;
     font-size: 24px;
     font-weight: bold;
 }
 
+/* Slight hover effect on logo */
 .logo-container:hover {
     text-decoration: none;
     opacity: 0.9;
 }
 
-/* Nav links */
+/* Navigation links container */
 .nav-links {
     list-style: none;
     display: flex;
@@ -58,11 +62,13 @@ a {
     align-items: center;
 }
 
+/* Individual navigation items */
 .nav-links li {
     margin-left: 20px;
     position: relative;
 }
 
+/* Navigation link styling */
 .nav-links a {
     color: white;
     padding: 10px 14px;
@@ -70,11 +76,12 @@ a {
     border-radius: 5px;
 }
 
+/* Hover effect for navigation links */
 .nav-links a:hover {
     background-color: #3a5f8a;
 }
 
-/* Dropdown */
+/* Dropdown menu container */
 .dropdown-menu {
     display: none;
     position: absolute;
@@ -90,24 +97,28 @@ a {
     list-style: none;
 }
 
+/* Dropdown list items */
 .dropdown-menu li {
     margin: 0;
 }
 
+/* Dropdown links */
 .dropdown-menu a {
     padding: 12px 16px;
     color: white;
 }
 
+/* Hover effect for dropdown links */
 .dropdown-menu a:hover {
     background-color: #3a5f8a;
 }
 
+/* Show dropdown on hover */
 .dropdown:hover .dropdown-menu {
     display: block;
 }
 
-/* Center content */
+/* Centered content on homepage */
 .center-content {
     height: calc(100vh - 80px);
     display: flex;
@@ -118,6 +129,7 @@ a {
     padding: 0 20px;
 }
 
+/* Main heading styling */
 .center-content h1 {
     font-size: 70px;
     margin: 0;
@@ -127,6 +139,7 @@ a {
     border-radius: 18px;
 }
 
+/* Subheading text styling */
 .center-content p {
     font-size: 28px;
     margin-top: 20px;

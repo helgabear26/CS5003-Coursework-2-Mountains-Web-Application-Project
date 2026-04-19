@@ -4,66 +4,126 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns="http://www.w3.org/1999/xhtml">
 
-<head>
+<h:head>
+    <!-- Basic page setup -->
     <meta charset="UTF-8"/>
     <title>Sign up Page</title>
+
+    <!-- Linking login stylesheet -->
     <link rel="stylesheet" type="text/css" href="../css/login.css"/>
+
+    <!-- Linking JavaScript file -->
     <script type="text/javascript" src="../js/script.js"></script>
-</head>
+</h:head>
 
-<body>
-<div class="content">
-    <div class="login-box">
-        <h1>sign up?</h1>
-        <div class="header-text">create a new account</div>
+<h:body>
+    <!-- Top navigation bar with clickable logo -->
+    <div class="top-navbar">
+        <a href="../dynamic/homePage.xhtml" class="logo-container">
 
-        <h:form id="SignupForm">
+            <!-- Website logo image -->
+            <h:graphicImage library="images"
+                            name="Mountain website logo 2.png"
+                            styleClass="logo" />
 
-            <div class="input-box">
-                <h:inputText id="email"
-                             value="#{SignUpBean.email}"
-                             p:placeholder="Email"/>
-                <h:message for="email"/>
-            </div>
-
-            <div class="input-box">
-                <h:inputText id="firstname"
-                             value="#{SignUpBean.firstName}"
-                             p:placeholder="First name"/>
-            </div>
-
-            <div class="input-box">
-                <h:inputText id="lastname"
-                             value="#{SignUpBean.lastName}"
-                             p:placeholder="Last name"/>
-            </div>
-
-            <div class="input-box">
-                <h:inputText id="username"
-                             value="#{SignUpBean.username}"
-                             p:placeholder="Username"/>
-            </div>
-
-            <div class="input-box">
-                <h:inputSecret id="password"
-                               value="#{SignUpBean.password}"
-                               p:placeholder="Password"/>
-            </div>
-
-            <div class="input-box">
-                <h:inputSecret id="Confirmpassword"
-                               value="#{SignUpBean.confirmPassword}"
-                               p:placeholder="Confirm Password"/>
-            </div>
-
-            <h:messages globalOnly="true"/>
-
-            <h:commandButton value="Sign up"
-                             action="#{SignUpBean.register}"
-                             styleClass="button"/>
-
-        </h:form>
+            <!-- Website name text -->
+            <span class="logo-text">Mountains</span>
+        </a>
     </div>
-</div>
-</body>
+
+
+    <!-- Main content container -->
+    <div class="content">
+        <div class="login-box">
+
+            <!-- Page heading -->
+            <h1>Sign Up?</h1>
+            <div class="header-text">Create a New Account.</div>
+
+            <!-- Sign up form -->
+            <h:form id="SignupForm">
+
+                <!-- Displays general error messages -->
+                <h:messages globalOnly="true"
+                            showSummary="false"
+                            showDetail="true"
+                            layout="list"
+                            styleClass="general-error" />
+
+                <!-- Email input -->
+                <div class="input-box">
+                    <h:inputText id="email"
+                                 value="#{SignUpBean.email}"
+                                 styleClass="input-field"
+                                 p:placeholder="Email"/>
+
+                    <!-- Email error message -->
+                    <h:message for="email" styleClass="error-message"/>
+                </div>
+
+                <!-- First name input -->
+                <div class="input-box">
+                    <h:inputText id="firstname"
+                                 value="#{SignUpBean.firstName}"
+                                 styleClass="input-field"
+                                 p:placeholder="First Name"/>
+
+                    <!-- First name error message -->
+                    <h:message for="firstname" styleClass="error-message"/>
+                </div>
+
+                <!-- Last name input -->
+                <div class="input-box">
+                    <h:inputText id="lastname"
+                                 value="#{SignUpBean.lastName}"
+                                 styleClass="input-field"
+                                 p:placeholder="Last Name"/>
+
+                    <!-- Last name error message -->
+                    <h:message for="lastname" styleClass="error-message"/>
+                </div>
+
+                <!-- Username input -->
+                <div class="input-box">
+                    <h:inputText id="username"
+                                 value="#{SignUpBean.username}"
+                                 styleClass="input-field"
+                                 p:placeholder="Username"/>
+
+                    <!-- Username error message -->
+                    <h:message for="username" styleClass="error-message"/>
+                </div>
+
+                <!-- Password input -->
+                <div class="input-box">
+                    <h:inputSecret id="password"
+                                   value="#{SignUpBean.password}"
+                                   styleClass="input-field"
+                                   p:placeholder="Password"/>
+
+                    <!-- Password error message -->
+                    <h:message for="password" styleClass="error-message"/>
+                </div>
+
+                <!-- Confirm password input -->
+                <div class="input-box">
+                    <h:inputSecret id="confirmPassword"
+                                   value="#{SignUpBean.confirmPassword}"
+                                   styleClass="input-field"
+                                   p:placeholder="Confirm Password"/>
+
+                    <!-- Confirm password error message -->
+                    <h:message for="confirmPassword" styleClass="error-message"/>
+                </div>
+
+                <!-- Sign up button -->
+                <h:commandButton value="Sign up"
+                                 action="#{SignUpBean.register}"
+                                 styleClass="button"/>
+
+            </h:form>
+        </div>
+    </div>
+
+</h:body>
 </html>
