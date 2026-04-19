@@ -5,31 +5,56 @@
       xmlns="http://www.w3.org/1999/xhtml">
 
 <h:head>
+    <!-- Basic page setup -->
     <meta charset="UTF-8"/>
     <title>Booking Page</title>
+
+    <!-- Linking layout stylesheet -->
     <link rel="stylesheet" type="text/css" href="../css/layout.css"/>
+
+    <!-- Linking global stylesheet -->
     <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
 
 <body>
+
+<!-- Top navigation bar -->
 <div class="topbar">
     <a href="http://localhost:8080/CS5003Coursework2MountainsWebApplicationProject-1.0-SNAPSHOT/pages/dynamic/homePage.xhtml" class="logo-container">
+
+        <!-- Website logo -->
         <h:graphicImage library="images" name="Mountain website logo 2.png" styleClass="logo"/>
+
+        <!-- Website name -->
         <span class="logo-text">Mountains</span>
     </a>
+
+    <!-- Login / user section -->
     <h:form styleClass="topbar-right">
+
+        <!-- Shown when user is not logged in -->
         <h:panelGroup rendered="#{empty loginBean.loggedInUser}">
             <h:link outcome="/pages/dynamic/login.xhtml"
                     styleClass="login-icon">
+
+                <!-- Login icon -->
                 <h:graphicImage library="images"
                                 name="Login.png"
                                 styleClass="login-img"/>
+
+                <!-- Login text -->
                 <span class="login-text">log in</span>
             </h:link>
         </h:panelGroup>
+
+        <!-- Shown when user is logged in -->
         <h:panelGroup rendered="#{not empty loginBean.loggedInUser}">
+
+            <!-- Display username -->
             <h:outputText value="#{loginBean.loggedInUser.username}"
                           styleClass ="login-text"/>
+
+            <!-- Logout button -->
             <h:commandLink value="Logout"
                            action="#{loginBean.logout}"
                            styleClass="logout-link"/>
@@ -38,15 +63,19 @@
     </h:form>
 </div>
 
-
+<!-- Main layout container -->
 <div class="layout">
+
+    <!-- Sidebar navigation -->
     <div class ="sidebar">
         <h2>Menu</h2>
+
         <a href="http://localhost:8080/CS5003Coursework2MountainsWebApplicationProject-1.0-SNAPSHOT/pages/dynamic/homePage.xhtml">Home</a>
         <a href="http://localhost:8080/CS5003Coursework2MountainsWebApplicationProject-1.0-SNAPSHOT/pages/static/aboutUs.xhtml">About Us</a>
         <a href="../static/safetyGuide.xhtml">Safety Guide</a>
         <a href="../dynamic/mountains.xhtml">View mountains</a>
 
+        <!-- Profile navigation -->
         <h:form style="display:inline; margin:0;">
             <h:commandLink value="My Profile"
                            action="#{homeBean.viewProfile}"
@@ -54,65 +83,91 @@
         </h:form>
 
         <a href="../dynamic/weather.xhtml/">Weather</a>
+
+        <!-- Bookings navigation -->
         <h:form style="display:inline; margin:0;">
             <h:commandLink value="My Bookings"
                            action="#{homeBean.viewBookings}"
                            style="color:white; padding:12px 16px; display:block;"/>
         </h:form>
+
         <a href="../dynamic/bookmarks.xhtml">BookMarks</a>
     </div>
+
+    <!-- Main content section -->
     <div class="content">
         <div class ="content-box">
+
+            <!-- Page heading -->
             <h1>My Bookings</h1>
+
+            <!-- Form showing current user bookings -->
             <h:form>
+
+                <!-- Displays messages related to booking actions -->
                 <h:messages  globalOnly="true"/>
+
+                <!-- Table displaying user bookings -->
                 <h:dataTable value="#{bookingBean.userBookings}" var="B" border="1">
+
+                    <!-- Booking ID column -->
                     <h:column>
                         <f:facet name="header">Booking ID</f:facet>
                         #{B.id}
                     </h:column>
 
+                    <!-- Accommodation column -->
                     <h:column>
                         <f:facet name="header">Accommodation</f:facet>
                         #{B.accommodationID.name}
                     </h:column>
 
+                    <!-- Date column -->
                     <h:column>
                         <f:facet name="header">DATE</f:facet>
                         #{B.datesBooked}
                     </h:column>
 
+                    <!-- Email column -->
                     <h:column>
                         <f:facet name="header">Email</f:facet>
                         #{B.email}
                     </h:column>
 
+                    <!-- Phone column -->
                     <h:column>
                         <f:facet name="header">Phone</f:facet>
                         #{B.phoneNo}
                     </h:column>
 
+                    <!-- Action buttons column -->
                     <h:column>
                         <f:facet name="header">Actions</f:facet>
+
+                        <!-- Button to select booking for editing -->
                         <h:commandButton value="Edit"
                                          action="#{bookingBean.selectBookingtoEdit(B)}"/>
 
-
+                        <!-- Button to delete booking -->
                         <h:commandButton  value="Delete"
                                           action="#{bookingBean.deleteBooking(B.id)}"
                                           onclick="return confirm('you are about to delete this booking');"/>
-
                     </h:column>
-
 
                 </h:dataTable>
             </h:form>
+
+            <!-- Edit booking section shown only when a booking is selected -->
             <h:panelGroup id="editPanel" layout="block" rendered="#{not empty bookingBean.selectedBooking}">
                 <h2> Edit Booking</h2>
 
+                <!-- Form for updating selected booking -->
                 <h:form>
                     <h:messages globalOnly="false"/>
+
+                    <!-- Grid layout for editable booking fields -->
                     <h:panelGrid columns="2">
+
                         <h:outputText value="Accommodation:"/>
                         <h:outputText value="#{bookingBean.selectedBooking.accommodationID.name}"/>
 
@@ -128,6 +183,8 @@
                         <h:inputText value="#{bookingBean.selectedBooking.phoneNo}"/>
 
                     </h:panelGrid>
+
+                    <!-- Button to save updated booking details -->
                     <h:commandButton value="Update Booking"
                                      action="#{bookingBean.updateBooking}"/>
 
@@ -139,8 +196,5 @@
 
 </div>
 
-
 </body>
-
-
 </html>

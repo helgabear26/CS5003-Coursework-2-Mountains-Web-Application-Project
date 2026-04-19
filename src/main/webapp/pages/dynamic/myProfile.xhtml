@@ -46,6 +46,7 @@
         <a href="../static/safetyGuide.xhtml">Safety Guide</a>
         <a href="../dynamic/mountains.xhtml">View mountains</a>
 
+
         <h:form style="display:inline; margin:0;">
             <h:commandLink value="My Profile"
                            action="#{homeBean.viewProfile}"
@@ -78,6 +79,8 @@
 
                         <h:outputText value="Email:"/>
                         <h:outputText value="#{ProfileBean.user.email}"/>
+
+
                     </h:panelGrid>
                     <h:form>
                         <h:commandButton value="EDIT Profile"
@@ -99,6 +102,10 @@
 
                             <h:outputText value="Email:"/>
                             <h:inputText value="#{ProfileBean.editableUser.email}"/>
+
+                            <h:outputText value="Username:"/>
+                            <h:inputText value="#{ProfileBean.editableUser.username}"/>
+
 
                         </h:panelGrid>
                         <h:commandButton value="Apply Changes"

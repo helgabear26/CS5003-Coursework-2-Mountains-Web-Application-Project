@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
+
 <h:head>
+    <!-- Basic page setup -->
     <meta charset="UTF-8"/>
     <title>About Us</title>
+
+    <!-- Linking global stylesheet -->
     <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
 
@@ -12,26 +16,46 @@
                font-family: Arial, sans-serif;
                margin: 0;">
 
+    <!-- Linking JavaScript file -->
     <h:outputScript library="js" name="script.js"/>
 
+    <!-- Top navigation bar -->
     <div class="topbar">
         <a href="http://localhost:8080/CS5003Coursework2MountainsWebApplicationProject-1.0-SNAPSHOT/pages/dynamic/homePage.xhtml" class="logo-container">
+
+            <!-- Website logo -->
             <h:graphicImage library="images" name="Mountain website logo 2.png" styleClass="logo"/>
+
+            <!-- Website name -->
             <span class="logo-text">Mountains</span>
         </a>
+
+        <!-- Login / user section -->
         <h:form styleClass="topbar-right">
+
+            <!-- Shown when user is not logged in -->
             <h:panelGroup rendered="#{empty loginBean.loggedInUser}">
                 <h:link outcome="/pages/dynamic/login.xhtml"
                         styleClass="login-icon">
+
+                    <!-- Login icon -->
                     <h:graphicImage library="images"
                                     name="Login.png"
                                     styleClass="login-img"/>
+
+                    <!-- Login text -->
                     <span class="login-text">log in</span>
                 </h:link>
             </h:panelGroup>
+
+            <!-- Shown when user is logged in -->
             <h:panelGroup rendered="#{not empty loginBean.loggedInUser}">
+
+                <!-- Display username -->
                 <h:outputText value="#{loginBean.loggedInUser.username}"
                               styleClass ="login-text"/>
+
+                <!-- Logout button -->
                 <h:commandLink value="Logout"
                                action="#{loginBean.logout}"
                                styleClass="logout-link"/>
@@ -39,20 +63,29 @@
 
         </h:form>
     </div>
+
+    <!-- Page layout container -->
     <div class="layout">
 
+        <!-- Sidebar navigation menu -->
         <div class="sidebar">
             <h2>Menu</h2>
+
             <a href="http://localhost:8080/CS5003Coursework2MountainsWebApplicationProject-1.0-SNAPSHOT/pages/dynamic/homePage.xhtml">Home</a>
             <a href="#" class="active">About Us</a>
             <a href="http://localhost:8080/CS5003Coursework2MountainsWebApplicationProject-1.0-SNAPSHOT/pages/static/safetyGuide.xhtml">Safety Guide</a>
             <a href="../dynamic/mountains.xhtml">View mountains</a>
+
+            <!-- Profile navigation -->
             <h:form style="display:inline; margin:0;">
                 <h:commandLink value="My Profile"
                                action="#{homeBean.viewProfile}"
                                style="color:white; padding:12px 16px; display:block;"/>
             </h:form>
+
             <a href="../dynamic/weather.xhtml/">Weather</a>
+
+            <!-- Bookings navigation -->
             <h:form style="display:inline; margin:0;">
                 <h:commandLink value="My Bookings"
                                action="#{homeBean.viewBookings}"
@@ -62,8 +95,10 @@
             <a href="../dynamic/bookmarks.xhtml">BookMarks</a>
         </div>
 
+        <!-- Main content section -->
         <div class="content">
 
+            <!-- About Us section -->
             <div class="content-box">
                 <h1>About Us</h1>
                 <p>
@@ -73,6 +108,7 @@
                 </p>
             </div>
 
+            <!-- Services offered -->
             <div class="content-box">
                 <h2>What We Offer</h2>
                 <ul>
@@ -84,6 +120,7 @@
                 </ul>
             </div>
 
+            <!-- Mission statement -->
             <div class="content-box">
                 <h2>Our Mission</h2>
                 <p>
@@ -92,6 +129,7 @@
                 </p>
             </div>
 
+            <!-- Contact information -->
             <div class="content-box">
                 <h2>Contact Us</h2>
                 <p>
@@ -99,20 +137,25 @@
                 </p>
 
                 <ul>
+
+                    <!-- Contact person 1 -->
                     <li class="contact-item">
                         <strong>Alesha Sangar</strong>
                         <p>Email: <a href="mailto:als1657@my.londonmet.ac.uk">als1657@my.londonmet.ac.uk</a></p>
                     </li>
 
+                    <!-- Contact person 2 -->
                     <li class="contact-item">
                         <strong>Helga Peter</strong>
                         <p>Email: <a href="mailto:hep0323@my.londonmet.ac.uk">hep0323@my.londonmet.ac.uk</a></p>
                     </li>
 
+                    <!-- Contact person 3 -->
                     <li class="contact-item">
                         <strong>Emmanuel Megwara</strong>
                         <p>Email: <a href="mailto:chm1406@my.londonmet.ac.uk">chm1406@my.londonmet.ac.uk</a></p>
                     </li>
+
                 </ul>
             </div>
 

@@ -1,14 +1,16 @@
+/* General page styling */
 body {
     color: midnightblue;
     font-family: Arial, sans-serif;
     margin: 0;
 }
 
-
+/* Main content area (transparent background to show page background image) */
 .content {
     background: transparent;
 }
 
+/* Box styling for content sections */
 .content-box {
     background-color: rgba(167, 199, 231, 0.9);
     padding: 20px;
@@ -17,6 +19,7 @@ body {
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
+/* Sidebar navigation styling */
 .sidebar {
     width: 250px;
     background-color: #274c77;
@@ -24,6 +27,7 @@ body {
     padding: 20px;
 }
 
+/* Sidebar links */
 .sidebar a {
     display: block;
     color: white;
@@ -34,20 +38,24 @@ body {
     transition: background 0.2s;
 }
 
+/* Hover effect for sidebar links */
 .sidebar a:hover {
     background-color: #3a5f8a;
 }
 
+/* Layout structure (sidebar + content side by side) */
 .layout {
     display: flex;
 }
 
+/* Main content styling */
 .content {
     flex: 1;
     padding: 20px;
     min-height: 100vh;
 }
 
+/* Top navigation bar styling */
 .topbar {
     background-color: #1f3b5c;
     color: white;
@@ -55,11 +63,13 @@ body {
     border-bottom: 4px solid #0a0d36;
 }
 
+/* Topbar heading */
 .topbar h1 {
     margin: 0;
     font-size: 28px;
 }
 
+/* Logo container (image + text aligned horizontally) */
 .logo-container {
     display: flex;
     align-items: center;
@@ -67,12 +77,14 @@ body {
     gap: 15px;
 }
 
+/* Logo image styling */
 .logo {
-    height: 80px;   /* adjust size */
+    height: 80px;
     margin-right: 10px;
     display: block;
 }
 
+/* Logo text styling */
 .logo-text {
     color: white;
     font-size: 28px;
@@ -80,29 +92,31 @@ body {
     line-height: 1;
 }
 
+/* Active sidebar link (current page) */
 .sidebar a.active {
     background-color: #1f3b5c;
     font-weight: bold;
-    pointer-events: none;   /* disables clicking */
+    pointer-events: none;
     cursor: default;
 }
 
-
+/* Spacing for list items inside content */
 .content ul li {
     margin-bottom: 15px;
 }
 
+/* Links inside content area */
 .content a {
     color: #ffffff;
     text-decoration: underline;
 }
 
+/* Hover effect for content links */
 .content a:hover {
     color: #dbeafe;
 }
 
-
-/* Headings spacing */
+/* Heading spacing */
 .content h1 {
     margin-bottom: 20px;
 }
@@ -128,12 +142,11 @@ body {
     margin-bottom: 10px;
 }
 
-/* Contact section spacing */
+/* Contact section styling */
 .content ul li strong {
     display: block;
     margin-bottom: 5px;
 }
-
 
 .contact-item {
     margin-bottom: 20px;
@@ -141,16 +154,15 @@ body {
 
 .contact-item strong {
     display: block;
-    margin-bottom: 8px;   /* space between name and email */
+    margin-bottom: 8px;
 }
 
 .contact-item p {
     margin: 0;
-    margin-left: 15px;    /* slight indent for email */
+    margin-left: 15px;
 }
 
-
-
+/* Topbar layout alignment (logo left, login right) */
 .topbar {
     display: flex;
     justify-content: space-between;
@@ -158,6 +170,7 @@ body {
     padding: 10px 20px;
 }
 
+/* Login icon image */
 .login-img {
     width: 35px;
     height: 35px;
@@ -165,7 +178,7 @@ body {
     object-fit: contain;
 }
 
-
+/* Login icon container */
 .login-icon {
     display: flex;
     align-items: center;
@@ -174,15 +187,16 @@ body {
     text-decoration: none;
 }
 
+/* Login icon image size */
 .login-icon img {
     max-width: 42px;
     max-height: 42px;
 }
 
-
+/* Login text styling */
 .login-text {
     color: white;
     font-size: 15px;
     font-weight: bold;
-    line-height: 1px
+    line-height: 1px;
 }

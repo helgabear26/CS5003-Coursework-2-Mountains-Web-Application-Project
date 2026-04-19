@@ -4,59 +4,84 @@
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
         xmlns="http://www.w3.org/1999/xhtml">
+
 <h:head>
+    <!-- Basic page setup -->
     <meta charset="UTF-8" />
     <title>Login Page</title>
+
+    <!-- Linking external CSS file for styling -->
     <link rel="stylesheet" type="text/css" href="../css/login.css" />
+
+    <!-- Linking external JavaScript file -->
     <script type="text/javascript" src="../js/script.js"></script>
 </h:head>
 
 <h:body>
 
-    <!-- Top navbar -->
+    <!-- Top navigation bar with clickable logo -->
     <div class="top-navbar">
         <a href="../dynamic/homePage.xhtml" class="logo-container">
+
+            <!-- Website logo image -->
             <h:graphicImage library="images"
                             name="Mountain website logo 2.png"
                             styleClass="logo" />
+
+            <!-- Website name text -->
             <span class="logo-text">Mountains</span>
         </a>
     </div>
 
+    <!-- Main content area -->
     <div class="content">
         <div class="login-box">
+
+            <!-- Login heading -->
             <h1>Have an account?</h1>
             <div class="header-text">Login into your account</div>
 
+            <!-- JSF form for login -->
             <h:form id="loginForm">
 
+                <!-- Displays general/global error messages (e.g. invalid login) -->
                 <h:messages globalOnly="true"
                             showSummary="false"
                             showDetail="true"
                             layout="list"
                             styleClass="general-error" />
 
+                <!-- Username input field -->
                 <div class="input-box">
                     <h:inputText id="username"
                                  value="#{loginBean.username}"
                                  styleClass="input-field"
                                  pt:placeholder="Username" />
+
+                    <!-- Error message for username field -->
                     <h:message for="username" styleClass="error-message" />
                 </div>
 
+                <!-- Password input field -->
                 <div class="input-box">
                     <h:inputSecret id="password"
                                    value="#{loginBean.password}"
                                    styleClass="input-field"
                                    pt:placeholder="Password" />
+
+                    <!-- Icon/button to toggle password visibility -->
                     <span class="hide-password" onclick="hidepassword()"></span>
+
+                    <!-- Error message for password field -->
                     <h:message for="password" styleClass="error-message" />
                 </div>
 
+                <!-- Login button that calls loginBean.login() method -->
                 <h:commandButton value="Login"
                                  action="#{loginBean.login}"
                                  styleClass="button" />
 
+                <!-- Link to sign up page -->
                 <h3>Don't have an account? Click sign up.</h3>
                 <a href="../dynamic/signUP.xhtml">Sign up</a>
 
