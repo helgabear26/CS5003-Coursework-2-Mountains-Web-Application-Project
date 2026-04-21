@@ -53,32 +53,41 @@ public class WeatherBean implements Serializable {
     }
 
     public void updateWeather() {
-            try {
-                Mountain mountain = selectedMountain != null ?
-                        selectedMountain : getSessionMountain();
+        System.out.println("HIT UPDATE WEATHER");
+        try {
 
-                if (mountain == null) {
-                    setError("Please select a mountain");
-                    return;
-                }
-
-                Optional<WeatherData> weatherOpt = weatherDAO.getWeather(mountain);
-
-                if (weatherOpt.isPresent()) {
-                    this.weatherData = weatherOpt.get();
-                    this.lastUpdate = new Date();
-                    this.dataLoaded = true;
-                    this.errorMessage = null;
-                    System.out.println("Weather loaded for: " + mountain.getName());
-                } else {
-                    setError("Failed to fetch weather for " + mountain.getName());
-                }
-
-            } catch (Exception e){
-                e.printStackTrace();
-                setError("Error: " + e.getMessage());
+            if (selectedMountainID == null && selectedMountain == null) {
+                setError("Please select a mountain");
+                return;
             }
+
+            Mountain mountain = selectedMountain;
+
+            if (mountain == null) {
+                mountain = mountainDAO.getMountainByID(selectedMountainID);
+            }
+
+            if (mountain == null) {
+                setError("Mountain not found");
+                return;
+            }
+
+            Optional<WeatherData> weatherOpt = weatherDAO.getWeather(mountain);
+
+            if (weatherOpt.isPresent()) {
+                this.weatherData = weatherOpt.get();
+                this.lastUpdate = new Date();
+                this.dataLoaded = true;
+                this.errorMessage = null;
+            } else {
+                setError("Failed to fetch weather");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            setError(e.getMessage());
         }
+    }
 
         private Mountain getSessionMountain() {
             FacesContext context = FacesContext.getCurrentInstance();

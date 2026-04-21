@@ -2,7 +2,7 @@ body {
     color: midnightblue;
     font-family: Arial, sans-serif;
     margin: 0;
-    background-image: url("../images/Mountain2.jpg");
+    background-image: url("resources/images/Mountain2.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
