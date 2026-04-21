@@ -4,13 +4,20 @@
       xmlns="http://www.w3.org/1999/xhtml">
 
 <h:head>
+    <!-- Basic page setup -->
     <meta charset="UTF-8"/>
     <title>Weather Page</title>
 
+    <!-- Linking global stylesheet -->
     <h:outputStylesheet library="css" name="style.css"/>
+
+    <!-- Linking layout stylesheet -->
     <link rel="stylesheet" type="text/css" href="../css/layout.css"/>
+
+    <!-- Linking weather page stylesheet -->
     <h:outputStylesheet library="css" name="weather.css"/>
 
+    <!-- JavaScript for automatically refreshing weather data -->
     <h:outputScript>
         const WEATHER_UPDATE_INTERVAL = 60000;
 
@@ -27,14 +34,22 @@
 
 <h:body>
 
+    <!-- Top navigation bar -->
     <div class="topbar">
         <a href="homePage.xhtml" class="logo-container">
+
+            <!-- Website logo -->
             <h:graphicImage library="images" name="Mountain website logo 2.png" styleClass="logo"/>
+
+            <!-- Website name -->
             <span class="logo-text">Mountains</span>
         </a>
 
+        <!-- Login / user section -->
         <h:form styleClass="topbar-right">
             <h:panelGroup rendered="#{empty loginBean.loggedInUser}">
+
+                <!-- Shown when user is not logged in -->
                 <h:link outcome="/pages/dynamic/login.xhtml" styleClass="login-icon">
                     <h:graphicImage library="images" name="Login.png" styleClass="login-img"/>
                     <span class="login-text">log in</span>
@@ -42,14 +57,20 @@
             </h:panelGroup>
 
             <h:panelGroup rendered="#{not empty loginBean.loggedInUser}">
+
+                <!-- Display username -->
                 <h:outputText value="#{loginBean.loggedInUser.username}" styleClass="login-text"/>
+
+                <!-- Logout button -->
                 <h:commandLink value="Logout" action="#{loginBean.logout}" styleClass="logout-link"/>
             </h:panelGroup>
         </h:form>
     </div>
 
+    <!-- Main layout container -->
     <div class="layout">
 
+        <!-- Sidebar navigation -->
         <div class="sidebar">
             <h2>Menu</h2>
             <a href="homePage.xhtml">Home</a>
@@ -59,52 +80,65 @@
             <a href="#" class="active">Weather</a>
         </div>
 
+        <!-- Main content section -->
         <div class="content">
             <div class="content-box">
 
+                <!-- Page heading -->
                 <h1>Mountain Weather Information</h1>
 
+                <!-- Weather form -->
                 <h:form id="weatherForm">
 
+                    <!-- Mountain selection dropdown -->
                     <div class="mountain-selector-container">
                         <label for="weatherForm:mountainSelector">Select a Mountain:</label>
 
                         <h:selectOneMenu id="mountainSelector"
                                          value="#{weatherBean.selectedMountainID}">
+
+                            <!-- Default dropdown option -->
                             <f:selectItem itemLabel="Choose a Mountain"
                                           itemValue=""
                                           noSelectionOption="true"/>
 
+                            <!-- List of mountains loaded from bean -->
                             <f:selectItems value="#{weatherBean.allMountains}"
                                            var="mountain"
                                            itemLabel="#{mountain.name}"
                                            itemValue="#{mountain.id}"/>
 
+                            <!-- Updates weather panel when a mountain is selected -->
                             <f:ajax listener="#{weatherBean.onMountainSelected}"
                                     execute="@this"
                                     render="weatherPanel"/>
                         </h:selectOneMenu>
                     </div>
 
+                    <!-- Hidden refresh button for automatic weather updates -->
                     <h:commandButton id="refreshBtn"
-                                     action="#{weatherBean.updateWeather}"
-                                     rendered="false">
+                                     action="#{weatherBean.updateWeather}">
                         <f:ajax execute="@form" render="weatherPanel"/>
                     </h:commandButton>
 
+                    <!-- Weather display panel -->
                     <h:panelGroup id="weatherPanel">
 
+                        <!-- Shown when weather data has loaded -->
                         <h:panelGroup rendered="#{weatherBean.dataLoaded}">
 
                             <div class="weather-card-container">
 
+                                <!-- Main weather summary card -->
                                 <div class="weather-main-card">
 
+                                    <!-- Weather icon -->
                                     <div class="weather-icon-container">
                                         <img src="https://openweathermap.org/img/wn/#{weatherBean.imageIcon}@2x.png"
                                              class="weather-icon"/>
                                     </div>
 
+                                    <!-- Temperature and condition details -->
                                     <div class="temperature-container">
                                         <div class="temperature">
                                             #{weatherBean.formattedTemperature}
@@ -119,6 +153,7 @@
 
                                 </div>
 
+                                <!-- Additional weather details -->
                                 <div class="weather-details-grid">
 
                                     <div class="detail-card">
@@ -135,6 +170,7 @@
 
                                 </div>
 
+                                <!-- Last update timestamp -->
                                 <div class="last-update">
                                     Last updated:
                                     <strong>#{weatherBean.formattedLastUpdate}</strong>
@@ -144,6 +180,7 @@
 
                         </h:panelGroup>
 
+                        <!-- Shown when no weather data is available -->
                         <h:panelGroup rendered="#{not weatherBean.dataLoaded}">
 
                             <div class="weather-error">
