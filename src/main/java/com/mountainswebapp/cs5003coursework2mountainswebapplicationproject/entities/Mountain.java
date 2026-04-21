@@ -3,10 +3,13 @@ package com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.enti
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "mountains")
-public class Mountain {
+public class Mountain implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "mountainID", nullable = false)

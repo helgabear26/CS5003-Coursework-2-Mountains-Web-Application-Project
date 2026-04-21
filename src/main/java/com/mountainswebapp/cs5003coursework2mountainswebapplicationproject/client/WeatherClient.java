@@ -15,13 +15,12 @@ public class WeatherClient {
     private static final String API_URL = "https://api.openweathermap.org/data/2.5/weather";
 
     private final HttpClient client = HttpClient.newHttpClient();
-    private final String apiKey;
 
-    public WeatherClient() {
-        this.apiKey = APIKeyConfigManager.getApiKey();
-    }
+
+
 
     public String fetch(double lat, double lon) throws Exception {
+        String apiKey = APIKeyConfigManager.getApiKey();
         String url = String.format("%s?lat=%.4f&lon=%.4f&appid=%s&units=metric",
                 API_URL,
                 lat,
