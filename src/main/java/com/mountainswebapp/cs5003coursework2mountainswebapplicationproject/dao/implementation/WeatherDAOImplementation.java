@@ -30,7 +30,7 @@ public class WeatherDAOImplementation implements WeatherDAO {
     public Optional<WeatherData> getWeather(double lat, double lon) {
         try {
             String json = client.fetch(lat, lon);
-            return Optional.of(WeatherParser.parse(json));
+            return Optional.ofNullable(WeatherParser.parse(json));
 
         } catch (Exception e) {
             LOGGER.warning("Weather fetch failed: " + e.getMessage());

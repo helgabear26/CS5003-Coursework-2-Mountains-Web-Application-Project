@@ -10,7 +10,15 @@ public class WeatherParser {
         JSONObject json = new JSONObject(jsonString);
 
         JSONObject main = json.getJSONObject("main");
-        JSONObject wind = json.getJSONObject("wind");
+
+        double temperature = main.getDouble("temp");
+        int humidity = main.getInt("humidity");
+
+        double windSpeed = 0.0;
+
+        if (json.has("wind") && !json.isNull("wind")) {
+            windSpeed = json.getJSONObject("wind").optDouble("speed", 0.0);
+        }
 
         String condition = "";
         String description = "";
@@ -18,18 +26,19 @@ public class WeatherParser {
 
         if (json.has("weather") && json.getJSONArray("weather").length() > 0) {
             JSONObject w = json.getJSONArray("weather").getJSONObject(0);
-            description = w.getString("description");
-            imageIcon = w.getString("icon");
+
+            condition = w.optString("main", "");
+            description = w.optString("description", "");
+            imageIcon = w.optString("icon", "");
         }
 
         return new WeatherData(
-                main.getDouble("temp"),
+                temperature,
                 condition,
-                wind.getDouble("speed"),
-                main.getInt("humidity"),
+                windSpeed,
+                humidity,
                 description,
                 imageIcon
         );
     }
-
 }
