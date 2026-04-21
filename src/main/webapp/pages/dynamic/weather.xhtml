@@ -87,8 +87,7 @@
                     </div>
 
                     <h:commandButton id="refreshBtn"
-                                     action="#{weatherBean.updateWeather}"
-                                     rendered="false">
+                                     action="#{weatherBean.updateWeather}">
                         <f:ajax execute="@form" render="weatherPanel"/>
                     </h:commandButton>
 
