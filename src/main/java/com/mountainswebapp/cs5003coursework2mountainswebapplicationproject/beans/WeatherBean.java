@@ -1,6 +1,7 @@
 package com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.beans;
 
 
+import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.dao.MountainDAO;
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.dao.WeatherDAO;
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.entities.Mountain;
 import com.mountainswebapp.cs5003coursework2mountainswebapplicationproject.model.WeatherData;
@@ -13,6 +14,7 @@ import jakarta.inject.Named;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Named("weatherBean")
@@ -23,47 +25,68 @@ public class WeatherBean implements Serializable {
     @Inject
     private WeatherDAO weatherDAO;
 
+    @Inject
+    private MountainDAO mountainDAO;
+
     private WeatherData weatherData;
     private Date lastUpdate;
     private boolean dataLoaded;
     private String errorMessage;
 
+    private Integer selectedMountainID;
+    private Mountain selectedMountain;
+    private List<Mountain> allMountains;
+
     @PostConstruct
     public void init() {
-        updateWeather();
+        this.allMountains = mountainDAO.getAllMountains();
+    }
+
+
+    public void onMountainSelected() {
+        System.out.println("AJAX is working");
+        if (selectedMountainID != null) {
+            System.out.println("Selected ID = " + selectedMountainID);
+            this.selectedMountain = mountainDAO.getMountainByID(selectedMountainID);
+            updateWeather();
+        }
     }
 
     public void updateWeather() {
-        try {
-            Mountain mountain = getSelectedMountain();
+            try {
+                Mountain mountain = selectedMountain != null ?
+                        selectedMountain : getSessionMountain();
 
-            if (mountain == null) {
-                setError("Mountain not selected");
-                return;
+                if (mountain == null) {
+                    setError("Please select a mountain");
+                    return;
+                }
+
+                Optional<WeatherData> weatherOpt = weatherDAO.getWeather(mountain);
+
+                if (weatherOpt.isPresent()) {
+                    this.weatherData = weatherOpt.get();
+                    this.lastUpdate = new Date();
+                    this.dataLoaded = true;
+                    this.errorMessage = null;
+                    System.out.println("Weather loaded for: " + mountain.getName());
+                } else {
+                    setError("Failed to fetch weather for " + mountain.getName());
+                }
+
+            } catch (Exception e){
+                e.printStackTrace();
+                setError("Error: " + e.getMessage());
             }
-
-            Optional<WeatherData> weatherOpt = weatherDAO.getWeather(mountain);
-
-            if (weatherOpt.isPresent()) {
-                this.weatherData = weatherOpt.get();
-                this.lastUpdate = new Date();
-                this.dataLoaded = true;
-                this.errorMessage = null;
-            } else {
-                setError("Failed to fetch weather");
-            }
-        } catch (Exception e) {
-            setError("Error: " + e.getMessage());
         }
-    }
 
-        private Mountain getSelectedMountain() {
+        private Mountain getSessionMountain() {
             FacesContext context = FacesContext.getCurrentInstance();
-
-            return (Mountain) context.getExternalContext()
+            return(Mountain) context.getExternalContext()
                     .getSessionMap()
                     .get("selectedMountain");
         }
+
 
         private void setError(String message) {
             this.errorMessage = message;
@@ -119,8 +142,25 @@ public class WeatherBean implements Serializable {
         return weatherData != null ? weatherData.getHumidity() : null;
     }
 
+    public Integer getSelectedMountainID() {
+        return selectedMountainID;
+    }
+
+    public void setSelectedMountainID(Integer selectedMountainID) {
+        this.selectedMountainID = selectedMountainID;
+    }
+
+    public Mountain getSelectedMountain() {
+        return selectedMountain;
+    }
+
+    public List<Mountain> getAllMountains() {
+        return allMountains;
+    }
 
 }
+
+
 
 
 

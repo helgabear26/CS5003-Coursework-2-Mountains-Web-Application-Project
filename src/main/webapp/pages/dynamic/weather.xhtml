@@ -1,167 +1,194 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<html xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns="http://www.w3.org/1999/xhtml">
 
 <h:head>
-    <meta charset="UTF-8"/>
-    <title>Mountains Weather Information</title>
 
-    <h:outputStylesheet name="css/style.css" />
-    <h:outputStylesheet name="css/weather.css" />
+    <meta charset="UTF-8"/>
+    <title>Weather Page</title>
+
+    <h:outputStylesheet library="css" name="style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/layout.css"/>
+    <h:outputStylesheet library="css" name="weather.css"/>
 
 </h:head>
 
-<h:body>
-    <div class="top-navbar">
+<body>
 
-        <a href="homePage.xhtml" class="logo-container">
-            <h:graphicImage library="images"
-                            name="Mountain website logo 2.png"
-                            styleClass="logo"/>
-            <span class="logo-text">Mountains</span>
-        </a>
+<div class="topbar">
 
-        <ul class="nav-links">
+    <a href="homePage.xhtml" class="logo-container">
 
-            <li><a href="homePage.xhtml">Home</a></li>
-            <li><a href="../static/aboutUs.xhtml">About Us</a></li>
-            <li><a href="../static/safetyGuide.xhtml">Safety Guide</a></li>
-            <li><a href="mountains.xhtml">View Mountains</a></li>
-            <li><a href="weather.xhtml" class="active">Weather</a></li>
+        <h:graphicImage library="images"
+                        name="Mountain website logo 2.png"
+                        styleClass="logo"/>
 
-            <h:panelGroup rendered="#{empty loginBean.loggedInUser}">
-                <li>
-                    <h:link outcome="login" value="Login" styleClass="login-link"/>
-                </li>
-            </h:panelGroup>
+        <span class="logo-text">Mountains</span>
 
-            <h:panelGroup rendered="#{not empty loginBean.loggedInUser}">
-                <li>
-                    <h:outputText value="Welcome, #{loginBean.loggedInUser.username}"
-                                  style="color:white; padding:10px 14px; display:block;"/>
-                </li>
+    </a>
 
-                <li>
-                    <h:form style="display:inline; margin:0;">
-                        <h:commandLink value="Logout"
-                                       action="#{loginBean.logout}"
-                                       style="color:white; padding:10px 14px; display:block;"/>
-                    </h:form>
-                </li>
+    <h:form styleClass="topbar-right">
 
-                <li>
-                    <h:link outcome="accountInfo" value="Account" styleClass="login-link"/>
-                </li>
-            </h:panelGroup>
-        </ul>
-
-    </div>
-
-    <div class="weather-page">
-
-        <h1>Weather Information</h1>
-
-        <h:form id="weatherForm" styleClass="weather-form">
-
-        <h:commandButton id="updateBtn"
-                         value="Update"
-                         action="#{weatherBean.updateWeather()}"
-                         style="display:none;">
-            <f:ajax render="weatherPanel"
-                    onstart="showLoadingSpinner()"
-                    oncomplete="hideLoadingSpinner()"/>
-        </h:commandButton>
-
-        <h:panelGroup id="weatherPanel" styleClass="weather-panel">
-
-            <h:panelGroup rendered="#{weatherBean.dataLoaded}">
-
-                <div class="weather-card-container">
-
-                    <div class="weather-main-card">
-
-                        <div class="weather-icon-container">
-                            <img src="https://openweathermap.org/img/wn/#{weatherBean.imageIcon}@4x.png"
-                                 alt="#{weatherBean.condition}"
-                                 class="weather-icon"/>
-                        </div>
-
-                        <div class="temperature-container">
-
-                            <div class="temperature">
-                                #{weatherBean.formattedTemperature}
-                            </div>
-
-                            <div class="condition">
-                                #{weatherBean.condition}
-                            </div>
-
-                            <div class="description">
-                                #{weatherBean.description}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="weather-details-grid">
-
-                        <div class="detail-card">
-                            <div class="detail-icon">💨</div>
-                            <div class="detail-label">Wind Speed</div>
-                            <div class="detail-value">
-                                #{weatherBean.formattedWindSpeed}
-                            </div>
-                        </div>
-
-                        <div class="detail-card">
-                            <div class="detail-icon">💧</div>
-                            <div class="detail-label">Humidity</div>
-                            <div class="detail-value">
-                                #{weatherBean.humidity}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="last-update">
-                    Last updated:
-                    <strong>#{weatherBean.formattedLastUpdate}</strong>
-                    <br/>
-                    <small>Automatically refreshes every 60 seconds</small>
-                </div>
-
-            </h:panelGroup>
-
-            <h:panelGroup rendered="#{!weatherBean.dataLoaded}">
-
-                <div class="weather-error">
-
-                    <div class="error-icon">⚠️</div>
-
-                    <div class="error-title">
-                        Unable to load Mountain Weather Information
-                    </div>
-
-                    <div class="error-message">
-                        #{weatherBean.errorMessage}
-                    </div>
-
-                    <div class="error-tip">
-                        Ensure a mountain is selected
-                    </div>
-                </div>
-
-            </h:panelGroup>
-
+        <h:panelGroup rendered="#{empty loginBean.loggedInUser}">
+            <h:link outcome="/pages/dynamic/login.xhtml" styleClass="login-icon">
+                <h:graphicImage library="images" name="Login.png" styleClass="login-img"/>
+                <span class="login-text">log in</span>
+            </h:link>
         </h:panelGroup>
 
+        <h:panelGroup rendered="#{not empty loginBean.loggedInUser}">
+            <h:outputText value="#{loginBean.loggedInUser.username}" styleClass="login-text"/>
+            <h:commandLink value="Logout"
+                           action="#{loginBean.logout}"
+                           styleClass="logout-link"/>
+        </h:panelGroup>
+
+    </h:form>
+
+</div>
+
+<div class="layout">
+
+    <div class="sidebar">
+
+        <h2>Menu</h2>
+
+        <a href="homePage.xhtml">Home</a>
+        <a href="../static/aboutUs.xhtml">About Us</a>
+        <a href="../static/safetyGuide.xhtml">Safety Guide</a>
+        <a href="mountains.xhtml">View Mountains</a>
+        <a href="#" class="active">Weather</a>
+
+        <h:form style="display:inline; margin:0;">
+            <h:commandLink value="My Profile"
+                           action="#{homeBean.viewProfile}"
+                           style="color:white; padding:12px 16px; display:block;"/>
         </h:form>
+
+        <h:form style="display:inline; margin:0;">
+            <h:commandLink value="My Bookings"
+                           action="#{homeBean.viewBookings}"
+                           style="color:white; padding:12px 16px; display:block;"/>
+        </h:form>
+
+
+
     </div>
-    <h:outputScript name="js/weather.js" target="body"/>
 
-</h:body>
+    <div class="content">
 
+        <div class="content-box">
 
+            <h1>Mountain Weather Information</h1>
+
+            <h:form id="weatherForm" styleClass="weather-form">
+
+                <div class="mountain-selector-container">
+
+                    <label for="mountainSelector">Select a Mountain:</label>
+
+                    <h:selectOneMenu id="mountainSelector"
+                                     value="#{weatherBean.selectedMountainID}">
+
+                        <f:selectItem itemLabel="Choose a Mountain"
+                                      itemValue=""
+                                      noSelectionOption="true"/>
+
+                        <f:selectItems value="#{weatherBean.allMountains}"
+                                       var="mountain"
+                                       itemLabel="#{mountain.name}"
+                                       itemValue="#{mountain.id}"/>
+
+                        <f:ajax listener="#{weatherBean.onMountainSelected}"
+                                render="weatherPanel"
+                                execute="@this"
+                                onstart="showLoadingSpinner()"
+                                oncomplete="hideLoadingSpinner()"/>
+
+                    </h:selectOneMenu>
+
+                </div>
+
+                <h:panelGroup id="weatherPanel">
+
+                    <h:panelGroup rendered="#{weatherBean.dataLoaded}">
+
+                        <div class="weather-card-container">
+
+                            <div class="weather-main-card">
+
+                                <div class="weather-icon-container">
+
+                                    <img src="https://openweathermap.org/img/wn/#{weatherBean.imageIcon}@2x.png"
+                                         class="weather-icon"/>
+
+                                </div>
+
+                                <div class="temperature-container">
+
+                                    <div class="temperature">
+                                        #{weatherBean.formattedTemperature}
+                                    </div>
+
+                                    <div class="condition">
+                                        #{weatherBean.condition}
+                                    </div>
+
+                                    <div class="description">
+                                        #{weatherBean.description}
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="weather-details-grid">
+
+                                <div class="detail-card">
+                                    <div class="detail-icon">💨</div>
+                                    <div class="detail-label">Wind Speed</div>
+                                    <div class="detail-value">#{weatherBean.formattedWindSpeed}</div>
+                                </div>
+
+                                <div class="detail-card">
+                                    <div class="detail-icon">💧</div>
+                                    <div class="detail-label">Humidity</div>
+                                    <div class="detail-value">#{weatherBean.humidity}%</div>
+                                </div>
+
+                            </div>
+
+                            <div class="last-update">
+                                Last updated:
+                                <strong>#{weatherBean.formattedLastUpdate}</strong>
+                            </div>
+
+                        </div>
+
+                    </h:panelGroup>
+
+                    <h:panelGroup rendered="#{not weatherBean.dataLoaded}">
+
+                        <div class="weather-error">
+                            <div class="error-icon">⚠️</div>
+                            <div class="error-title">No Weather Data Loaded</div>
+                            <div class="error-message">#{weatherBean.errorMessage}</div>
+                            <div class="error-tip">Select a mountain</div>
+                        </div>
+
+                    </h:panelGroup>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
 </html>
-
-

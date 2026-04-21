@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distribute 8.0.45, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.45, for Win64 (x86_64)
 --
 -- Host: localhost    Database: mountainswebappdb
 -- ------------------------------------------------------
--- Server version	8.0.45
+-- Server version	8.0.43
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -31,7 +31,7 @@ CREATE TABLE `accommodation` (
   PRIMARY KEY (`accommodationID`),
   KEY `FK_accommodation_mountain` (`mountainID`),
   CONSTRAINT `FK_accommodation_mountain` FOREIGN KEY (`mountainID`) REFERENCES `mountains` (`mountainID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,6 +40,7 @@ CREATE TABLE `accommodation` (
 
 LOCK TABLES `accommodation` WRITE;
 /*!40000 ALTER TABLE `accommodation` DISABLE KEYS */;
+INSERT INTO `accommodation` VALUES (1,'Everest Base Camp Lodge','Basic high-altitude lodge for trekkers heading to Everest Base Camp.','28.0026, 86.8528',1),(2,'K2 Base Camp Shelter','Remote and rugged shelter used by climbers preparing for K2 expeditions.','35.8808, 76.5133',2),(3,'Annapurna Sanctuary Lodge','Scenic lodge surrounded by Annapurna peaks, popular with trekkers.','28.5300, 83.8800',3),(4,'Gasherbrum I Camp Lodge','Minimalist accommodation for experienced climbers in extreme conditions.','35.7255, 76.6968',4),(5,'Gasherbrum II Rest Camp','Temporary rest stop with essential facilities for climbers.','35.7590, 76.6540',5),(6,'Annapurna II Base Lodge','Comfortable base lodge with panoramic Himalayan views.','28.5355, 84.1230',6),(7,'Annapurna III Trekker Hut','Simple hut catering to trekking groups and guides.','28.5860, 83.9915',7),(8,'Kilimanjaro Summit Camp','High-altitude camp near Uhuru Peak for summit attempts.','3.0678, 37.3560',8),(9,'Elbrus Mountain Lodge','Well-equipped lodge with heating and supplies for climbers.','43.3505, 42.4458',9),(10,'Mont Blanc Alpine Hut','Classic alpine hut offering stunning glacier views.','45.8330, 6.8658',10),(11,'Matterhorn Base Lodge','Charming Swiss lodge with direct access to climbing routes.','45.9770, 7.6590',11),(12,'Sunshine Peak Cabin','Small wooden cabin in the San Juan Mountains region.','37.9232, 107.4260',12),(13,'Jungfrau Ice Lodge','Unique lodge located near glacial areas in the Bernese Alps.','46.5470, 7.9850',3),(14,'Grossglockner Alpine Retreat','Modern alpine retreat with scenic Austrian mountain views.','47.0748, 12.6955',14),(15,'Dhaulagiri Base Camp Lodge','Remote lodge for trekkers exploring the Dhaulagiri circuit.','28.6960, 83.4870',1);
 /*!40000 ALTER TABLE `accommodation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -59,7 +60,7 @@ CREATE TABLE `activity_price` (
   PRIMARY KEY (`priceID`),
   KEY `FK_activity_price_activityID` (`activityID`),
   CONSTRAINT `FK_activity_price_activityID` FOREIGN KEY (`activityID`) REFERENCES `mountain_activities` (`activityID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,6 +69,7 @@ CREATE TABLE `activity_price` (
 
 LOCK TABLES `activity_price` WRITE;
 /*!40000 ALTER TABLE `activity_price` DISABLE KEYS */;
+INSERT INTO `activity_price` VALUES (1,'GBP',120.00,'per_person',1),(2,'GBP',950.00,'package',1),(3,'GBP',80.00,'per_person',2),(4,'GBP',650.00,'package',2),(5,'GBP',110.00,'per_day',3),(6,'GBP',700.00,'package',3),(7,'GBP',95.00,'per_day',4),(8,'GBP',800.00,'package',4),(9,'GBP',60.00,'per_person',5),(10,'GBP',400.00,'package',5),(11,'GBP',105.00,'per_person',6),(12,'GBP',780.00,'package',6),(13,'GBP',60.00,'per_person',7),(14,'GBP',400.00,'package',7),(15,'GBP',200.00,'per_day',8),(16,'GBP',1200.00,'package',8),(17,'GBP',160.00,'per_person',9),(18,'GBP',1100.00,'package',9),(19,'GBP',90.00,'per_person',10),(20,'GBP',700.00,'package',10);
 /*!40000 ALTER TABLE `activity_price` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -90,7 +92,7 @@ CREATE TABLE `booking` (
   KEY `FK_booking_user` (`userID`),
   CONSTRAINT `FK_booking_accommodation` FOREIGN KEY (`accommodationID`) REFERENCES `accommodation` (`accommodationID`),
   CONSTRAINT `FK_booking_user` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,6 +101,7 @@ CREATE TABLE `booking` (
 
 LOCK TABLES `booking` WRITE;
 /*!40000 ALTER TABLE `booking` DISABLE KEYS */;
+INSERT INTO `booking` VALUES (1,1,1,'2026-06-20','dwecdce@gmail.com','09380302');
 /*!40000 ALTER TABLE `booking` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -179,7 +182,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`userID`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `unique_username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -188,6 +191,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'ben','fishman','Chm@gmail.com','$2a$10$iLn.fOR6ZvxgbixsnnLSRu5YRWIG/pn7zdgNmxJvKN/S3QFFwEc.m','benfish');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -200,4 +204,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-04-18 23:00:05
+-- Dump completed on 2026-04-20 18:19:40
