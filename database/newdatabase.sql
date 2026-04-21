@@ -185,6 +185,11 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+drop table if exists saved_preferences;
+DROP TABLE IF EXISTS admin;
+drop TABLE IF EXISTS review_system;
+DROP TABLE IF EXISTS booking_system;
+DROP TABLE IF EXISTS booking_information;
 --
 -- Dumping data for table `users`
 --
